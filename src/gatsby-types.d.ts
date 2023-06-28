@@ -4117,5 +4117,10 @@ type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type MyQueryQuery = { readonly allContentfulSpecies: { readonly nodes: ReadonlyArray<{ readonly speciesType: string | null, readonly slug: string | null, readonly id: string, readonly breeds: ReadonlyArray<{ readonly slug: string | null, readonly breedName: string | null, readonly breedSummary: { readonly raw: string | null } | null, readonly breedPhoto: { readonly description: string | null, readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null } | null } | null> | null }> } };
 
+type PageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PageQueryQuery = { readonly allContentfulBreed: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly species: { readonly slug: string | null } | null }> }, readonly allContentfulAnimals: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly speciesType: { readonly slug: string | null } | null, readonly breedType: { readonly slug: string | null } | null }> } };
+
 
 }

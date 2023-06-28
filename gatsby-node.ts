@@ -39,7 +39,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
   const singleAnimal = path.resolve('./src/templates/single-animal.tsx')
 
   const result = await graphql<QueryResult>(`
-    {
+    query PageQuery {
       allContentfulBreed {
         nodes {
           slug
