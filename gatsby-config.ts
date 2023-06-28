@@ -8,7 +8,8 @@ const config: GatsbyConfig = {
   	siteMetadata: {
     	title: "PetSpace",
     	description: `Lorem ipsum dolor sit amet.`,
-		favicon: `/favicon.png`
+		favicon: `/favicon.png`,
+		siteUrl: "https://petspace.gatsbyjs.io/"
   	},
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
