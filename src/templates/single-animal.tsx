@@ -19,9 +19,11 @@ interface AnimalSinglePageProps {
             adoptionLink: string
             speciesType: {
                 slug: string
+                speciesType: string
             }
             breedType: {
                 slug: string
+                breedName: string
             }
         }
     }
@@ -45,13 +47,18 @@ export const query = graphql`
             }
             breedType {
                 slug
+                breedName
             }
         }
     }
 `
 
 export const Head: HeadFC = ({ data }) => (
-    <title>{data.contentfulAnimals.animalName}</title>
+    <title>
+        {data.contentfulAnimals.speciesType.speciesType}s -{" "}
+        {data.contentfulAnimals.breedType.breedName} -{" "}
+        {data.contentfulAnimals.animalName}
+    </title>
 )
 
 const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
@@ -80,7 +87,8 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
                 <Link
                     to={`/${data.contentfulAnimals.speciesType.slug}/breed/${data.contentfulAnimals.breedType.slug}`}
                 >
-                    Back to Breeds
+                    Back to {data.contentfulAnimals.breedType.breedName}{" "}
+                    {data.contentfulAnimals.speciesType.speciesType}s
                 </Link>
             </p>
 
@@ -101,9 +109,13 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
             </div>
 
             {data.contentfulAnimals.adoptionLink && (
-                <Link to={data.contentfulAnimals.adoptionLink}>
+                <a
+                    href={data.contentfulAnimals.adoptionLink}
+                    target="_blank"
+                    rel="nofollow"
+                >
                     Adopt {data.contentfulAnimals.animalName}
-                </Link>
+                </a>
             )}
         </Layout>
     )

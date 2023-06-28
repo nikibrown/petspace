@@ -28,7 +28,6 @@ const PageCard = styled.div`
     border-radius: 6px;
     flex: 1 0 80vw;
     padding: 20px;
-    box-sizing: border-box;
 
     @media screen and (min-width: 600px) {
         flex: 0 1 calc(50% - 1em);

@@ -9,6 +9,7 @@ const PageFlexRow = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 20px 0;
 `
 
 const FlexRow: React.FC<FlexRowProps> = ({ children }) => {

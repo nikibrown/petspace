@@ -6,6 +6,7 @@ import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import Layout from "../components/Layout"
 import Card from "../components/Card"
 import Stats from "../components/Stats"
+import FlexRow from "../components/utilities/FlexRow"
 
 interface BreedSinglePageProps {
     data: {
@@ -90,7 +91,10 @@ export const query = graphql`
     }
 `
 export const Head: HeadFC = ({ data }) => (
-    <title>{data.contentfulBreed.breedName} </title>
+    <title>
+        {data.contentfulBreed.species.speciesType}s -{" "}
+        {data.contentfulBreed.breedName}
+    </title>
 )
 
 const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
@@ -145,11 +149,13 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
                 <GatsbyImage image={getImage(breedPhoto)} alt={breedName} />
             )}
 
-            <div className="desc">
-                {renderRichText(breedDescription, options)}
-            </div>
+            <FlexRow>
+                <div className="desc" style={{ flex: "0 1 calc(50% - 1em)" }}>
+                    {renderRichText(breedDescription, options)}
+                </div>
 
-            <Stats statData={statData} />
+                <Stats statData={statData} />
+            </FlexRow>
 
             {animalsForAdoption && (
                 <div className="animals-for-adoption">
