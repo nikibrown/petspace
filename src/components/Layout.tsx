@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Header from './Header'
 import Footer from './Footer'
+import { GlobalStyles } from '../globalStyles'
 
 
 interface LayoutProps {
@@ -21,7 +22,8 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
         }
     `)
   	return (
-    	<>
+            <>
+            <GlobalStyles />
 			<Header siteTitle={data.site.siteMetadata.title} />
 			<main>
 				<div className="container">
