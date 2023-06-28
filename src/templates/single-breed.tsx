@@ -1,7 +1,6 @@
 import React from "react"
-import { HeadFC, Link, graphql } from "gatsby"
+import { HeadFC, graphql } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import Layout from "../components/Layout"
 import Card from "../components/Card"
@@ -10,7 +9,6 @@ import FlexRow from "../components/utilities/FlexRow"
 import Section from "../components/utilities/Section"
 import { designTokens } from "../components/designTokens"
 import styled from "styled-components"
-
 import { Link as TextPageLink } from "gatsby"
 
 interface BreedSinglePageProps {
@@ -96,10 +94,16 @@ export const query = graphql`
     }
 `
 export const Head: HeadFC = ({ data }) => (
-    <title>
-        {data.contentfulBreed.species.speciesType}s -{" "}
-        {data.contentfulBreed.breedName}
-    </title>
+    <>
+        <title>
+            {data.contentfulBreed.species.speciesType}s -{" "}
+            {data.contentfulBreed.breedName}
+        </title>
+        <meta
+            name="description"
+            content={`Your place to learn about ${data.contentfulBreed.breedName} ${data.contentfulBreed.species.speciesType}s`}
+        />
+    </>
 )
 
 const PageLink = styled(TextPageLink)`
@@ -123,25 +127,6 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
         species,
         slug,
     } = data.contentfulBreed
-
-    const options = {
-        renderMark: {
-            [MARKS.BOLD]: (text: string) => <b className="font-bold">{text}</b>,
-        },
-        renderNode: {
-            [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
-                const { uri } = node.data
-                return (
-                    <a href={uri} className="underline">
-                        {children}
-                    </a>
-                )
-            },
-            [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => {
-                return <h2>{children}</h2>
-            },
-        },
-    }
 
     const statData = {
         breedLifeExpectancyMin: breedLifeExpectancyMin,
@@ -174,7 +159,7 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
                         className="desc"
                         style={{ flex: "0 1 calc(50% - 1em)" }}
                     >
-                        {renderRichText(breedDescription, options)}
+                        {renderRichText(breedDescription)}
                     </div>
 
                     <Stats statData={statData} />
@@ -184,7 +169,9 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
             <Section>
                 {animalsForAdoption && (
                     <div className="animals-for-adoption">
-                        <h2>Adopt a {breedName} today!</h2>
+                        <h2>
+                            Adopt a {breedName} {species.speciesType} today!
+                        </h2>
                         <FlexRow>
                             {animalsForAdoption.map((animalData) => (
                                 <Card

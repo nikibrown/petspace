@@ -75,7 +75,13 @@ const PageLink = styled(TextPageLink)`
 `
 
 export const Head: HeadFC = () => (
-    <title>PetSpace - your place to learn about pet species and breeds</title>
+    <>
+        <title>PetSpace</title>
+        <meta
+            name="description"
+            content="Your place to learn about various pet species and breeds"
+        />
+    </>
 )
 
 const ListPage: React.FC<ListPageProps> = ({ data }) => {

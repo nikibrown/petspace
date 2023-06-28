@@ -2,7 +2,6 @@ import * as React from "react"
 import { HeadFC, graphql } from "gatsby"
 import { Link as TextPageLink } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
@@ -64,35 +63,21 @@ const PageLink = styled(TextPageLink)`
         text-decoraton: underline;
     }
 `
-
 export const Head: HeadFC = ({ data }) => (
-    <title>
-        {data.contentfulAnimals.speciesType.speciesType}s -{" "}
-        {data.contentfulAnimals.breedType.breedName} -{" "}
-        {data.contentfulAnimals.animalName}
-    </title>
+    <>
+        <title>
+            {data.contentfulAnimals.speciesType.speciesType}s -{" "}
+            {data.contentfulAnimals.breedType.breedName} -{" "}
+            {data.contentfulAnimals.animalName}
+        </title>
+        <meta
+            name="description"
+            content={`Your place to learn about ${data.contentfulAnimals.animalName}, the ${data.contentfulAnimals.breedType.breedName} ${data.contentfulAnimals.speciesType.speciesType}`}
+        />
+    </>
 )
 
 const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
-    const options = {
-        renderMark: {
-            [MARKS.BOLD]: (text: string) => <b className="font-bold">{text}</b>,
-        },
-        renderNode: {
-            [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
-                const { uri } = node.data
-                return (
-                    <a href={uri} className="underline">
-                        {children}
-                    </a>
-                )
-            },
-            [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => {
-                return <h2>{children}</h2>
-            },
-        },
-    }
-
     return (
         <Layout>
             <Section>
@@ -115,10 +100,7 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
                 )}
 
                 <div className="desc">
-                    {renderRichText(
-                        data.contentfulAnimals.animalDescription,
-                        options
-                    )}
+                    {renderRichText(data.contentfulAnimals.animalDescription)}
                 </div>
 
                 {data.contentfulAnimals.adoptionLink && (

@@ -8,7 +8,6 @@ import {
 } from "gatsby-plugin-image"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { Link as CardLink } from "gatsby"
-import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { designTokens } from "./designTokens"
 import ButtonCTA from "./ButtonCTA"
 
@@ -53,27 +52,6 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
     const cardTitle = cardData.breedName || cardData.animalName
     const cardText = cardData.breedSummary || cardData.animalDescription
 
-    const options = {
-        renderMark: {
-            [MARKS.BOLD]: (text: React.ReactNode) => (
-                <b className="font-bold">{text}</b>
-            ),
-        },
-        renderNode: {
-            [INLINES.HYPERLINK]: (node: any, children: any) => {
-                const { uri } = node.data
-                return (
-                    <a href={uri} className="underline">
-                        {children}
-                    </a>
-                )
-            },
-            [BLOCKS.HEADING_2]: (children: any) => {
-                return <h2>{children}</h2>
-            },
-        },
-    }
-
     return (
         <PageCard>
             <div className="card-image">
@@ -90,7 +68,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
                 <h3>
                     <CardLinkHeadline to={url}>{cardTitle}</CardLinkHeadline>
                 </h3>
-                {cardText && renderRichText(cardText, options)}
+                {cardText && renderRichText(cardText)}
 
                 <ButtonCTA url={url}>Learn More &rarr;</ButtonCTA>
             </div>
