@@ -17,6 +17,12 @@ const config: GatsbyConfig = {
     graphqlTypegen: true,
     plugins: [
         {
+            resolve: "gatsby-plugin-manifest",
+            options: {
+                icon: "src/images/favicon.png",
+            },
+        },
+        {
             resolve: "gatsby-source-contentful",
             options: {
                 spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -45,12 +51,6 @@ const config: GatsbyConfig = {
         "gatsby-transformer-sharp",
         "gatsby-plugin-styled-components",
         "gatsby-plugin-sitemap",
-        {
-            resolve: "gatsby-plugin-manifest",
-            options: {
-                icon: "src/images/icon.png",
-            },
-        },
         {
             resolve: "gatsby-source-filesystem",
             options: {

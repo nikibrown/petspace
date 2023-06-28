@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { HeadFC, graphql } from "gatsby"
 import { Link as TextPageLink } from "gatsby"
 import Card from "../components/Card"
-import FlexRow from "../components/utilities/FlexRow"
+import { FlexRowStart } from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
 import { designTokens } from "../components/designTokens"
@@ -108,7 +108,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                         {speciesData.speciesType} Breeds:{" "}
                     </h2>
 
-                    <FlexRow justifyContent="flex-start">
+                    <FlexRowStart>
                         {speciesData.breeds.map((breedData) => (
                             <Card
                                 cardData={breedData}
@@ -116,7 +116,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                                 key={breedData.slug}
                             />
                         ))}
-                    </FlexRow>
+                    </FlexRowStart>
                 </Section>
             ))}
         </Layout>

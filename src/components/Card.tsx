@@ -24,7 +24,7 @@ const CardWrapper = styled.div`
     flex: 1 0 80vw;
     padding: ${designTokens.spacing.small};
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 900px) {
         flex: 0 1 calc(50% - 1em);
     }
 

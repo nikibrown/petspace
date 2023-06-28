@@ -63,6 +63,10 @@ const PageLink = styled(TextPageLink)`
         text-decoraton: underline;
     }
 `
+
+const ImageContainer = styled.div`
+    margin-bottom: ${designTokens.spacing.small};
+`
 export const Head: HeadFC = ({ data }) => (
     <>
         <title>
@@ -92,11 +96,14 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
                 </p>
 
                 <h1>{data.contentfulAnimals.animalName}</h1>
+
                 {data.contentfulAnimals.animalPhoto && (
-                    <GatsbyImage
-                        image={getImage(data.contentfulAnimals.animalPhoto)}
-                        alt={data.contentfulAnimals.animalName}
-                    />
+                    <ImageContainer>
+                        <GatsbyImage
+                            image={getImage(data.contentfulAnimals.animalPhoto)}
+                            alt={data.contentfulAnimals.animalName}
+                        />
+                    </ImageContainer>
                 )}
 
                 <div className="desc">

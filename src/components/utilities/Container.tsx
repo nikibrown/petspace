@@ -10,11 +10,11 @@ const Wrapper = styled.div`
     max-width: 80vw;
 
     @media screen and (min-width: 600px) {
-        max-width: 70vw;
+        max-width: 80vw;
     }
 
     @media screen and (min-width: 1200px) {
-        max-width: 60vw;
+        max-width: 70vw;
     }
 `
 
