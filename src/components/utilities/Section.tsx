@@ -1,20 +1,21 @@
 import * as React from "react"
-import styled from "styled-components"
 import Container from "./Container"
+import { designTokens } from "../designTokens"
+import styled from "styled-components"
 
 interface SectionProps {
     children: React.ReactNode
 }
 
-const PageSection = styled.section`
-    padding: 20px 0;
+const Wrapper = styled.section`
+    padding: ${designTokens.spacing.small} 0;
 `
 
 const Section: React.FC<SectionProps> = ({ children }) => {
     return (
-        <PageSection>
+        <Wrapper>
             <Container>{children}</Container>
-        </PageSection>
+        </Wrapper>
     )
 }
 

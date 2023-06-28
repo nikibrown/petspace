@@ -11,6 +11,9 @@ export const designTokens = {
         small: "20px",
         large: "40px",
     },
+    borderRadius: {
+        default: "6px",
+    },
     fonts: {
         text: '"Open Sans", sans-serif',
     },

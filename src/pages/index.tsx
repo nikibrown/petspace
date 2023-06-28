@@ -108,7 +108,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                         {speciesData.speciesType} Breeds:{" "}
                     </h2>
 
-                    <FlexRow>
+                    <FlexRow justifyContent="flex-start">
                         {speciesData.breeds.map((breedData) => (
                             <Card
                                 cardData={breedData}

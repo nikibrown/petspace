@@ -23,11 +23,11 @@ interface CardProps {
     url: string
 }
 
-const PageCard = styled.div`
-    border: 1px solid gray;
+const CardWrapper = styled.div`
+    border: 1px solid #bbb;
     border-radius: 6px;
     flex: 1 0 80vw;
-    padding: 15px;
+    padding: ${designTokens.spacing.small};
 
     @media screen and (min-width: 600px) {
         flex: 0 1 calc(50% - 1em);
@@ -38,7 +38,7 @@ const PageCard = styled.div`
     }
 
     img {
-        border-radius: 6px;
+        border-radius: ${designTokens.borderRadius.default};
     }
 `
 
@@ -47,13 +47,20 @@ const CardLinkHeadline = styled(CardLink)`
     text-decoration: none;
 `
 
+const CardBody = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: self-start;
+`
+
 const Card: React.FC<CardProps> = ({ cardData, url }) => {
     const cardImage = cardData.breedPhoto || cardData.animalPhoto
     const cardTitle = cardData.breedName || cardData.animalName
     const cardText = cardData.breedSummary || cardData.animalDescription
 
     return (
-        <PageCard>
+        <CardWrapper>
             <div className="card-image">
                 <CardLink to={url}>
                     {cardImage && (
@@ -64,15 +71,15 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
                     )}
                 </CardLink>
             </div>
-            <div className="card-body">
+            <CardBody>
                 <h3>
                     <CardLinkHeadline to={url}>{cardTitle}</CardLinkHeadline>
                 </h3>
                 {cardText && renderRichText(cardText)}
 
                 <ButtonCTA url={url}>Learn More &rarr;</ButtonCTA>
-            </div>
-        </PageCard>
+            </CardBody>
+        </CardWrapper>
     )
 }
 

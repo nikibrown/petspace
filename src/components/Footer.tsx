@@ -1,15 +1,15 @@
 import * as React from "react"
 import styled from "styled-components"
 import { designTokens } from "./designTokens"
-
 import { Link } from "gatsby"
 import Container from "./utilities/Container"
+import { FlexRowSpaced } from "./utilities/FlexRow"
 
 interface FooterProps {
     siteTitle: string
 }
 
-const PageFooter = styled.footer`
+const FooterWrapper = styled.footer`
     background-color: ${designTokens.colors.brandDark};
     color: ${designTokens.colors.brandLight};
     padding: 50px 0 20px 0;
@@ -21,12 +21,6 @@ const PageFooter = styled.footer`
     p {
         margin: 0;
     }
-`
-
-const FooterFlexRow = styled.div`
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
 `
 
 const FooterEmoji = styled.span`
@@ -70,9 +64,9 @@ const ToolTip = styled.span`
 
 const Footer: React.FC<FooterProps> = ({ siteTitle }) => {
     return (
-        <PageFooter>
+        <FooterWrapper>
             <Container>
-                <FooterFlexRow>
+                <FlexRowSpaced>
                     <p>
                         &copy; <Link to="/">{siteTitle}</Link> 2023
                     </p>
@@ -87,9 +81,9 @@ const Footer: React.FC<FooterProps> = ({ siteTitle }) => {
                             🐸<ToolTip className="tooltip">ribbit</ToolTip>
                         </FooterEmoji>
                     </p>
-                </FooterFlexRow>
+                </FlexRowSpaced>
             </Container>
-        </PageFooter>
+        </FooterWrapper>
     )
 }
 

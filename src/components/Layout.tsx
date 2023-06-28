@@ -4,13 +4,14 @@ import Header from "./Header"
 import Footer from "./Footer"
 import styled from "styled-components"
 import { GlobalStyles } from "../globalStyles"
+import { designTokens } from "./designTokens"
 
 interface LayoutProps {
     children: React.ReactNode
 }
 
 const Main = styled.main`
-    padding: 20px 0;
+    padding: ${designTokens.spacing.small} 0;
 `
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

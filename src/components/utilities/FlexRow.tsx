@@ -3,17 +3,41 @@ import styled from "styled-components"
 
 interface FlexRowProps {
     children: React.ReactNode
+    justifyContent: string
 }
 
-const PageFlexRow = styled.div`
+const FlexRow: React.FC<FlexRowProps> = ({ children }) => {
+    return <Wrapper>{children}</Wrapper>
+}
+
+/*
+ * Default FlexRow styles
+ */
+
+const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
     gap: 20px;
 `
 
-const FlexRow: React.FC<FlexRowProps> = ({ children }) => {
-    return <PageFlexRow>{children}</PageFlexRow>
-}
+/*
+ * Variant FlexRow with space-between
+ */
+
+export const FlexRowSpaced = styled(Wrapper)`
+    && {
+        justify-content: space-between;
+    }
+`
+
+/*
+ * Variant FlexRow with flex-start
+ */
+
+export const FlexRowStart = styled(Wrapper)`
+    && {
+        justify-content: flex-start;
+    }
+`
 
 export default FlexRow

@@ -5,12 +5,13 @@ import { useState } from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Container from "./utilities/Container"
+import { FlexRowSpaced } from "./utilities/FlexRow"
 
 interface HeaderProps {
     siteTitle: string
 }
 
-const PageHeader = styled.header`
+const HeaderWrapper = styled.header`
     background-color: ${designTokens.colors.brandPrimary};
     color: green;
     padding: 20px 0;
@@ -23,12 +24,6 @@ const PageHeader = styled.header`
         text-decoration: none;
         transition: color 0.15s ease-in-out;
     }
-`
-
-const HeaderFlexRow = styled.div`
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
 `
 
 const Avatar = styled.div`
@@ -58,9 +53,9 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
     const [showNotifications, setShowNotifications] = useState(true)
 
     return (
-        <PageHeader>
+        <HeaderWrapper>
             <Container>
-                <HeaderFlexRow>
+                <FlexRowSpaced>
                     <h1>
                         <Link to="/">{siteTitle}</Link>
                     </h1>
@@ -68,9 +63,9 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
                         <StaticImage alt="Avatar" src="../images/paw.svg" />
                         {showNotifications ? <Badge>1</Badge> : null}
                     </Avatar>
-                </HeaderFlexRow>
+                </FlexRowSpaced>
             </Container>
-        </PageHeader>
+        </HeaderWrapper>
     )
 }
 

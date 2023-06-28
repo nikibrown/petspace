@@ -8,7 +8,7 @@ interface ButtonCTAProps {
     url: string
 }
 
-const PageButtonCTA = styled(LinkButton)`
+const Wrapper = styled(LinkButton)`
     background-color: ${designTokens.colors.brandPrimary};
     color: ${designTokens.colors.brandLight};
     padding: 4px 8px;
@@ -22,7 +22,7 @@ const PageButtonCTA = styled(LinkButton)`
 `
 
 const ButtonCTA: React.FC<ButtonCTAProps> = ({ children, url }) => {
-    return <PageButtonCTA to={url}>{children}</PageButtonCTA>
+    return <Wrapper to={url}>{children}</Wrapper>
 }
 
 export default ButtonCTA
