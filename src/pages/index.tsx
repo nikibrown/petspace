@@ -1,4 +1,5 @@
 import * as React from "react"
+import styled from "styled-components"
 import { HeadFC, Link, graphql } from "gatsby"
 import Card from "../components/Card"
 import Layout from "../components/Layout"
@@ -51,6 +52,23 @@ export const query = graphql`
     }
 `
 
+const SpeciesList = styled.ul`
+    margin: 0;
+    padding: 0;
+`
+
+const SpeciesListItem = styled.li`
+    display: inline;
+    margin-right: 20px;
+`
+
+const CardRow = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+`
+
 export const Head: HeadFC = () => (
     <title>PetSpace - your place to learn about pet species and breeds</title>
 )
@@ -60,15 +78,15 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
         <Layout>
             <h1>Pet Species</h1>
 
-            <ul>
+            <SpeciesList>
                 {data.allContentfulSpecies.nodes.map((speciesData) => (
-                    <li key={speciesData.id}>
+                    <SpeciesListItem key={speciesData.id}>
                         <Link to={`/#${speciesData.slug}s`}>
                             {speciesData.speciesType}s
                         </Link>
-                    </li>
+                    </SpeciesListItem>
                 ))}
-            </ul>
+            </SpeciesList>
 
             {data.allContentfulSpecies.nodes.map((speciesData) => (
                 <div key={speciesData.slug}>
@@ -76,7 +94,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                         {speciesData.speciesType} Breeds:{" "}
                     </h2>
 
-                    <div className="cards">
+                    <CardRow>
                         {speciesData.breeds.map((breedData) => (
                             <Card
                                 cardData={breedData}
@@ -84,7 +102,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                                 key={breedData.slug}
                             />
                         ))}
-                    </div>
+                    </CardRow>
                 </div>
             ))}
         </Layout>

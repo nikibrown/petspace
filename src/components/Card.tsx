@@ -1,4 +1,6 @@
 import * as React from "react"
+import styled from "styled-components"
+
 import {
     GatsbyImage,
     getImage,
@@ -20,6 +22,22 @@ interface CardProps {
     }
     url: string
 }
+
+const PageCard = styled.div`
+    border: 1px solid gray;
+    border-radius: 6px;
+    flex: 1 0 80vw;
+    padding: 20px;
+    box-sizing: border-box;
+
+    @media screen and (min-width: 600px) {
+        flex: 0 1 calc(50% - 1em);
+    }
+
+    @media screen and (min-width: 1200px) {
+        flex: 0 1 calc(25% - 1em);
+    }
+`
 
 const Card: React.FC<CardProps> = ({ cardData, url }) => {
     const cardImage = cardData.breedPhoto || cardData.animalPhoto
@@ -48,7 +66,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
     }
 
     return (
-        <div className="card">
+        <PageCard>
             <div className="card-image">
                 <Link to={url}>
                     {cardImage && (
@@ -66,7 +84,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
                 {cardText && renderRichText(cardText, options)}
                 <Link to={url}>Learn More</Link>
             </div>
-        </div>
+        </PageCard>
     )
 }
 
