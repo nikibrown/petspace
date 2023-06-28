@@ -4112,5 +4112,10 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
+type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MyQueryQuery = { readonly allContentfulSpecies: { readonly nodes: ReadonlyArray<{ readonly speciesType: string | null, readonly slug: string | null, readonly id: string, readonly breeds: ReadonlyArray<{ readonly slug: string | null, readonly breedName: string | null, readonly breedSummary: { readonly raw: string | null } | null, readonly breedPhoto: { readonly description: string | null, readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null } | null } | null> | null }> } };
+
 
 }
