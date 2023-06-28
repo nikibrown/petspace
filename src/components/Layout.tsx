@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
 			<Header siteTitle={data.site.siteMetadata.title} />
 			<main>
 				<div className="container">
-					<h1>{pageTitle}</h1>
+                    {pageTitle && <h1>{pageTitle}</h1>}
 					{children}
 				</div>	
 			</main>

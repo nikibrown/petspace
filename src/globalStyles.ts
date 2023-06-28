@@ -94,4 +94,33 @@ footer p {
   margin: 0;
 }
 
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+
+.card {
+  border: 1px solid gray;
+  border-radius: 6px;
+  flex:1 0 80vw;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 600px) {
+.card {
+    flex: 0 1 calc(50% - 1em);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .card {
+    flex: 0 1 calc(25% - 1em);
+  }
+}
+
 `

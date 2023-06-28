@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link, HeadFC, PageProps } from "gatsby"
 
+export const Head: HeadFC = () => <title>FourOhFour not found! Oh No!</title>
 
 const FourOhFour: React.FC<PageProps> = () => {
   return (
@@ -14,5 +15,3 @@ const FourOhFour: React.FC<PageProps> = () => {
 }
 
 export default FourOhFour
-
-export const Head: HeadFC = () => <title>Not found</title>

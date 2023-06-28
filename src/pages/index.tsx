@@ -14,7 +14,7 @@ interface BreedQueryResult {
         breedName: string
         breedSummary: {
           raw: string
-        };
+        }
         breedPhoto: {
           description: string
           gatsbyImageData: {
@@ -49,9 +49,11 @@ export const pageQuery = graphql`
   }
 `
 
+export const Head: HeadFC = () => <title>PetSpace</title>
+
 const BreedListPage: React.FC<PageProps<BreedQueryResult>> = ({ data }) => {
   return (
-    <Layout pageTitle="Pet Species">
+    <Layout>
       <h1>Pet Species</h1>
 
       <ul>
@@ -68,8 +70,7 @@ const BreedListPage: React.FC<PageProps<BreedQueryResult>> = ({ data }) => {
 
           <div className="cards">
             {speciesData.breeds.map(breedData => (
-              <h1>{JSON.stringify(breedData.breedName)}</h1>
-						
+              <Card cardData={breedData} url={`/${speciesData.slug}/breed/${breedData.slug}`} key={breedData.slug}  />
 						))}
           </div>
         </div>
@@ -79,5 +80,3 @@ const BreedListPage: React.FC<PageProps<BreedQueryResult>> = ({ data }) => {
 }
 
 export default BreedListPage
-
-export const Head: HeadFC = () => <title>Home Page</title>
