@@ -5,7 +5,6 @@ import { useState } from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Container from "./utilities/Container"
-import FlexRow from "./utilities/FlexRow"
 
 interface HeaderProps {
     siteTitle: string
@@ -24,6 +23,12 @@ const PageHeader = styled.header`
         text-decoration: none;
         transition: color 0.15s ease-in-out;
     }
+`
+
+const HeaderFlexRow = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 `
 
 const Avatar = styled.div`
@@ -55,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
     return (
         <PageHeader>
             <Container>
-                <FlexRow>
+                <HeaderFlexRow>
                     <h1>
                         <Link to="/">{siteTitle}</Link>
                     </h1>
@@ -63,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
                         <StaticImage alt="Avatar" src="../images/paw.svg" />
                         {showNotifications ? <Badge>1</Badge> : null}
                     </Avatar>
-                </FlexRow>
+                </HeaderFlexRow>
             </Container>
         </PageHeader>
     )

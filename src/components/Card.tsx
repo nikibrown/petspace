@@ -1,6 +1,5 @@
 import * as React from "react"
 import styled from "styled-components"
-
 import {
     GatsbyImage,
     getImage,
@@ -8,8 +7,10 @@ import {
     IGatsbyImageData,
 } from "gatsby-plugin-image"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { Link } from "gatsby"
+import { Link as CardLink } from "gatsby"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { designTokens } from "./designTokens"
+import ButtonCTA from "./ButtonCTA"
 
 interface CardProps {
     cardData: {
@@ -35,6 +36,14 @@ const PageCard = styled.div`
 
     @media screen and (min-width: 1200px) {
         flex: 0 1 calc(25% - 1em);
+    }
+`
+
+const CardLinkHeadline = styled(CardLink)`
+    color: ${designTokens.colors.brandPrimary};
+    text-decoration: none;
+    &:hover {
+        text-decoraton: underline;
     }
 `
 
@@ -67,21 +76,22 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
     return (
         <PageCard>
             <div className="card-image">
-                <Link to={url}>
+                <CardLink to={url}>
                     {cardImage && (
                         <GatsbyImage
                             image={getImage(cardImage)}
                             alt={cardTitle}
                         />
                     )}
-                </Link>
+                </CardLink>
             </div>
             <div className="card-body">
                 <h3>
-                    <Link to={url}>{cardTitle}</Link>
+                    <CardLinkHeadline to={url}>{cardTitle}</CardLinkHeadline>
                 </h3>
                 {cardText && renderRichText(cardText, options)}
-                <Link to={url}>Learn More</Link>
+
+                <ButtonCTA url={url}>Learn More</ButtonCTA>
             </div>
         </PageCard>
     )

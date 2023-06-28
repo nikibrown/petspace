@@ -7,7 +7,6 @@ import Layout from "../components/Layout"
 import Card from "../components/Card"
 import Stats from "../components/Stats"
 import FlexRow from "../components/utilities/FlexRow"
-import CardRow from "../components/utilities/CardRow"
 
 interface BreedSinglePageProps {
     data: {
