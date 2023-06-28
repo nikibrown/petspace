@@ -1,15 +1,10 @@
 import * as React from "react"
-import styled from "styled-components"
-import {
-    GatsbyImage,
-    getImage,
-    ImageDataLike,
-    IGatsbyImageData,
-} from "gatsby-plugin-image"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { Link as CardLink } from "gatsby"
-import { designTokens } from "./designTokens"
 import ButtonCTA from "./ButtonCTA"
+import { designTokens } from "./designTokens"
+import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image"
+import { Link as CardLink } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import styled from "styled-components"
 
 interface CardProps {
     cardData: {

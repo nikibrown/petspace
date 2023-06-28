@@ -1,15 +1,16 @@
-import React from "react"
-import { HeadFC, graphql } from "gatsby"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
-import Layout from "../components/Layout"
+import * as React from "react"
 import Card from "../components/Card"
-import Stats from "../components/Stats"
-import FlexRow from "../components/utilities/FlexRow"
-import Section from "../components/utilities/Section"
 import { designTokens } from "../components/designTokens"
-import styled from "styled-components"
+import FlexRow from "../components/utilities/FlexRow"
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { HeadFC, graphql } from "gatsby"
+import Layout from "../components/Layout"
 import { Link as TextPageLink } from "gatsby"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import Section from "../components/utilities/Section"
+import Stats from "../components/Stats"
+
+import styled from "styled-components"
 
 interface BreedSinglePageProps {
     data: {

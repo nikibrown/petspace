@@ -1,10 +1,10 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Header from "./Header"
-import Footer from "./Footer"
-import styled from "styled-components"
-import { GlobalStyles } from "../globalStyles"
 import { designTokens } from "./designTokens"
+import Footer from "./Footer"
+import { GlobalStyles } from "../globalStyles"
+import { graphql, useStaticQuery } from "gatsby"
+import Header from "./Header"
+import styled from "styled-components"
 
 interface LayoutProps {
     children: React.ReactNode

@@ -1,11 +1,11 @@
 import * as React from "react"
-import styled from "styled-components"
+import Container from "./utilities/Container"
 import { designTokens } from "./designTokens"
-import { useState } from "react"
+import { FlexRowSpaced } from "./utilities/FlexRow"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import Container from "./utilities/Container"
-import { FlexRowSpaced } from "./utilities/FlexRow"
+import styled from "styled-components"
+import { useState } from "react"
 
 interface HeaderProps {
     siteTitle: string

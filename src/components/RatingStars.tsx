@@ -1,6 +1,6 @@
 import React from "react"
-import styled from "styled-components"
 import { designTokens } from "./designTokens"
+import styled from "styled-components"
 
 interface RatingStarsProps {
     ratingNum: number

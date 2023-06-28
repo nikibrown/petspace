@@ -1,9 +1,9 @@
 import * as React from "react"
-import styled from "styled-components"
-import { designTokens } from "./designTokens"
-import { Link } from "gatsby"
 import Container from "./utilities/Container"
+import { designTokens } from "./designTokens"
 import { FlexRowSpaced } from "./utilities/FlexRow"
+import { Link } from "gatsby"
+import styled from "styled-components"
 
 interface FooterProps {
     siteTitle: string

@@ -1,7 +1,7 @@
 import * as React from "react"
-import styled from "styled-components"
-import { Link as LinkButton } from "gatsby"
 import { designTokens } from "./designTokens"
+import { Link as LinkButton } from "gatsby"
+import styled from "styled-components"
 
 interface ButtonCTAProps {
     children: React.ReactNode

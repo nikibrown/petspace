@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 interface FlexRowProps {
     children: React.ReactNode
-    justifyContent: string
 }
 
 const FlexRow: React.FC<FlexRowProps> = ({ children }) => {

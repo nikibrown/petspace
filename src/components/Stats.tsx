@@ -1,8 +1,8 @@
 import * as React from "react"
-import styled from "styled-components"
+import BarGraph from "./BarGraph"
 import { designTokens } from "./designTokens"
 import RatingStars from "./RatingStars"
-import BarGraph from "./BarGraph"
+import styled from "styled-components"
 
 interface StatsProps {
     statData: {
