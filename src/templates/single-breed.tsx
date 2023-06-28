@@ -7,6 +7,7 @@ import Layout from "../components/Layout"
 import Card from "../components/Card"
 import Stats from "../components/Stats"
 import FlexRow from "../components/utilities/FlexRow"
+import Section from "../components/utilities/Section"
 
 interface BreedSinglePageProps {
     data: {
@@ -139,38 +140,49 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
 
     return (
         <Layout>
-            <p>
-                <Link to={`/`}>Back to Pets</Link>
-            </p>
+            <Section>
+                <p>
+                    <Link to={`/`}>Back to Pets</Link>
+                </p>
 
-            <h1>{breedName}</h1>
+                <h1>{breedName}</h1>
+            </Section>
 
-            {breedPhoto && (
-                <GatsbyImage image={getImage(breedPhoto)} alt={breedName} />
-            )}
+            <Section>
+                {breedPhoto && (
+                    <GatsbyImage image={getImage(breedPhoto)} alt={breedName} />
+                )}
+            </Section>
 
-            <FlexRow>
-                <div className="desc" style={{ flex: "0 1 calc(50% - 1em)" }}>
-                    {renderRichText(breedDescription, options)}
-                </div>
+            <Section>
+                <FlexRow>
+                    <div
+                        className="desc"
+                        style={{ flex: "0 1 calc(50% - 1em)" }}
+                    >
+                        {renderRichText(breedDescription, options)}
+                    </div>
 
-                <Stats statData={statData} />
-            </FlexRow>
+                    <Stats statData={statData} />
+                </FlexRow>
+            </Section>
 
-            {animalsForAdoption && (
-                <div className="animals-for-adoption">
-                    <h2>Adopt a {breedName} today!</h2>
-                    <FlexRow>
-                        {animalsForAdoption.map((animalData) => (
-                            <Card
-                                cardData={animalData}
-                                url={`/${animalData.speciesType.slug}/breed/${slug}/${animalData.slug}`}
-                                key={animalData.slug}
-                            />
-                        ))}
-                    </FlexRow>
-                </div>
-            )}
+            <Section>
+                {animalsForAdoption && (
+                    <div className="animals-for-adoption">
+                        <h2>Adopt a {breedName} today!</h2>
+                        <FlexRow>
+                            {animalsForAdoption.map((animalData) => (
+                                <Card
+                                    cardData={animalData}
+                                    url={`/${animalData.speciesType.slug}/breed/${slug}/${animalData.slug}`}
+                                    key={animalData.slug}
+                                />
+                            ))}
+                        </FlexRow>
+                    </div>
+                )}
+            </Section>
         </Layout>
     )
 }

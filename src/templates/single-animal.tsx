@@ -3,6 +3,7 @@ import { HeadFC, Link, graphql } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Layout from "../components/Layout"
+import Section from "../components/utilities/Section"
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 
 interface AnimalSinglePageProps {
@@ -83,40 +84,41 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
 
     return (
         <Layout>
-            <p>
-                <Link
-                    to={`/${data.contentfulAnimals.speciesType.slug}/breed/${data.contentfulAnimals.breedType.slug}`}
-                >
-                    Back to {data.contentfulAnimals.breedType.breedName}{" "}
-                    {data.contentfulAnimals.speciesType.speciesType}s
-                </Link>
-            </p>
+            <Section>
+                <p>
+                    <Link
+                        to={`/${data.contentfulAnimals.speciesType.slug}/breed/${data.contentfulAnimals.breedType.slug}`}
+                    >
+                        Back to {data.contentfulAnimals.breedType.breedName}{" "}
+                        {data.contentfulAnimals.speciesType.speciesType}s
+                    </Link>
+                </p>
 
-            <h1>{data.contentfulAnimals.animalName}</h1>
-
-            {data.contentfulAnimals.animalPhoto && (
-                <GatsbyImage
-                    image={getImage(data.contentfulAnimals.animalPhoto)}
-                    alt={data.contentfulAnimals.animalName}
-                />
-            )}
-
-            <div className="desc">
-                {renderRichText(
-                    data.contentfulAnimals.animalDescription,
-                    options
+                <h1>{data.contentfulAnimals.animalName}</h1>
+                {data.contentfulAnimals.animalPhoto && (
+                    <GatsbyImage
+                        image={getImage(data.contentfulAnimals.animalPhoto)}
+                        alt={data.contentfulAnimals.animalName}
+                    />
                 )}
-            </div>
 
-            {data.contentfulAnimals.adoptionLink && (
-                <a
-                    href={data.contentfulAnimals.adoptionLink}
-                    target="_blank"
-                    rel="nofollow"
-                >
-                    Adopt {data.contentfulAnimals.animalName}
-                </a>
-            )}
+                <div className="desc">
+                    {renderRichText(
+                        data.contentfulAnimals.animalDescription,
+                        options
+                    )}
+                </div>
+
+                {data.contentfulAnimals.adoptionLink && (
+                    <a
+                        href={data.contentfulAnimals.adoptionLink}
+                        target="_blank"
+                        rel="nofollow"
+                    >
+                        Adopt {data.contentfulAnimals.animalName}
+                    </a>
+                )}
+            </Section>
         </Layout>
     )
 }

@@ -27,6 +27,9 @@ const BreedStatsList = styled.ul`
 `
 
 const BreedStatsListItem = styled.li`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 5px 0;
     padding: 0;
 `

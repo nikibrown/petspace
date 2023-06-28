@@ -10,11 +10,15 @@ interface BarGraphProps {
 const BarBg = styled.div`
     background-color: ${designTokens.colors.brandDark};
     border: 1px solid ${designTokens.colors.brandDark};
+    flex: 0 1 calc(70% - 1em);
 `
 
 const Bar = styled.div`
     background-color: ${designTokens.colors.brandLight};
+    font-size: 12px;
+    padding-right: 10px;
     text-align: right;
+    height: 100%;
 `
 
 const BarGraph: React.FC<BarGraphProps> = ({ min, max }) => {

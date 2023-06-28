@@ -2,9 +2,8 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./Header"
 import Footer from "./Footer"
-import { GlobalStyles } from "../globalStyles"
-import Container from "./utilities/Container"
 import styled from "styled-components"
+import { GlobalStyles } from "../globalStyles"
 
 interface LayoutProps {
     children: React.ReactNode
@@ -28,9 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <>
             <GlobalStyles />
             <Header siteTitle={data.site.siteMetadata.title} />
-            <Main>
-                <Container>{children}</Container>
-            </Main>
+            <Main>{children}</Main>
             <Footer siteTitle={data.site.siteMetadata.title} />
         </>
     )

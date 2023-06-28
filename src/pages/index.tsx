@@ -4,6 +4,7 @@ import { HeadFC, Link, graphql } from "gatsby"
 import Card from "../components/Card"
 import FlexRow from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
+import Section from "../components/utilities/Section"
 
 interface ListPageProps {
     data: {
@@ -70,20 +71,22 @@ export const Head: HeadFC = () => (
 const ListPage: React.FC<ListPageProps> = ({ data }) => {
     return (
         <Layout>
-            <h1>Pet Species</h1>
+            <Section>
+                <h1>Pet Species</h1>
 
-            <SpeciesList>
-                {data.allContentfulSpecies.nodes.map((speciesData) => (
-                    <SpeciesListItem key={speciesData.id}>
-                        <Link to={`/#${speciesData.slug}s`}>
-                            {speciesData.speciesType}s
-                        </Link>
-                    </SpeciesListItem>
-                ))}
-            </SpeciesList>
+                <SpeciesList>
+                    {data.allContentfulSpecies.nodes.map((speciesData) => (
+                        <SpeciesListItem key={speciesData.id}>
+                            <Link to={`/#${speciesData.slug}s`}>
+                                {speciesData.speciesType}s
+                            </Link>
+                        </SpeciesListItem>
+                    ))}
+                </SpeciesList>
+            </Section>
 
             {data.allContentfulSpecies.nodes.map((speciesData) => (
-                <div key={speciesData.slug}>
+                <Section key={speciesData.slug}>
                     <h2 id={`${speciesData.slug}s`}>
                         {speciesData.speciesType} Breeds:{" "}
                     </h2>
@@ -97,7 +100,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                             />
                         ))}
                     </FlexRow>
-                </div>
+                </Section>
             ))}
         </Layout>
     )
