@@ -51,7 +51,7 @@ export const query = graphql`
 `
 
 export const Head: HeadFC = ({ data }) => (
-    <title>{data.contentfulAnimals.animalName} </title>
+    <title>{data.contentfulAnimals.animalName}</title>
 )
 
 const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {

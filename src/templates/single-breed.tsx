@@ -109,10 +109,10 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
 
     const options = {
         renderMark: {
-            [MARKS.BOLD]: (text) => <b className="font-bold">{text}</b>,
+            [MARKS.BOLD]: (text: string) => <b className="font-bold">{text}</b>,
         },
         renderNode: {
-            [INLINES.HYPERLINK]: (node, children) => {
+            [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
                 const { uri } = node.data
                 return (
                     <a href={uri} className="underline">
@@ -120,7 +120,7 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
                     </a>
                 )
             },
-            [BLOCKS.HEADING_2]: (node, children) => {
+            [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => {
                 return <h2>{children}</h2>
             },
         },

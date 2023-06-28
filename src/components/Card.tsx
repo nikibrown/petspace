@@ -1,5 +1,10 @@
 import * as React from "react"
-import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image"
+import {
+    GatsbyImage,
+    getImage,
+    ImageDataLike,
+    IGatsbyImageData,
+} from "gatsby-plugin-image"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { Link } from "gatsby"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -8,19 +13,18 @@ interface CardProps {
     cardData: {
         breedPhoto?: ImageDataLike
         animalPhoto?: ImageDataLike
-        breedName?: string
-        animalName?: string
-        breedSummary?: string
-        animalDescription?: string
+        breedName: string
+        animalName: string
+        breedSummary: string
+        animalDescription: string
     }
     url: string
 }
 
 const Card: React.FC<CardProps> = ({ cardData, url }) => {
-    const cardImage =
-        getImage(cardData?.breedPhoto) || getImage(cardData?.animalPhoto)
-    const cardTitle = cardData?.breedName || cardData?.animalName
-    const cardText = cardData?.breedSummary || cardData?.animalDescription
+    const cardImage = cardData.breedPhoto || cardData.animalPhoto
+    const cardTitle = cardData.breedName || cardData.animalName
+    const cardText = cardData.breedSummary || cardData.animalDescription
 
     const options = {
         renderMark: {
@@ -29,7 +33,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
             ),
         },
         renderNode: {
-            [INLINES.HYPERLINK]: (node, children) => {
+            [INLINES.HYPERLINK]: (node: any, children: any) => {
                 const { uri } = node.data
                 return (
                     <a href={uri} className="underline">
@@ -37,7 +41,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
                     </a>
                 )
             },
-            [BLOCKS.HEADING_2]: (node, children) => {
+            [BLOCKS.HEADING_2]: (children: any) => {
                 return <h2>{children}</h2>
             },
         },
@@ -48,7 +52,10 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
             <div className="card-image">
                 <Link to={url}>
                     {cardImage && (
-                        <GatsbyImage image={cardImage} alt={cardTitle} />
+                        <GatsbyImage
+                            image={getImage(cardImage)}
+                            alt={cardTitle}
+                        />
                     )}
                 </Link>
             </div>
