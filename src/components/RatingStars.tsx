@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react"
 
 interface RatingStarsProps {
-    ratingNum: number;
+    ratingNum: number
 }
 
 const RatingStars: React.FC<RatingStarsProps> = ({ ratingNum }) => {
+    const filledStars = Array.from({ length: ratingNum }, (_, i) => "★")
 
-    const filledStars = Array.from({ length: ratingNum }, (_, i) => "★");
+    const emptyStarsNum = 5 - ratingNum
 
-    const emptyStarsNum = (5 - ratingNum);
+    const emptyStars = Array.from({ length: emptyStarsNum }, (_, i) => "☆")
 
-    const emptyStars = Array.from({ length: emptyStarsNum }, (_, i) => "☆");
-
-    return (    
+    return (
         <span className="rating">
-        
             {filledStars.map((star, index) => (
                 <span key={index}>{star}</span>
             ))}
@@ -22,9 +20,8 @@ const RatingStars: React.FC<RatingStarsProps> = ({ ratingNum }) => {
             {emptyStars.map((star, index) => (
                 <span key={index}>{star}</span>
             ))}
-                
         </span>
     )
 }
 
-export default RatingStars;
+export default RatingStars
