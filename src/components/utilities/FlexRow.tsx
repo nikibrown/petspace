@@ -7,9 +7,9 @@ interface FlexRowProps {
 
 const PageFlexRow = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
 `
 
 const FlexRow: React.FC<FlexRowProps> = ({ children }) => {

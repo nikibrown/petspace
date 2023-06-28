@@ -7,6 +7,7 @@ import Layout from "../components/Layout"
 import Card from "../components/Card"
 import Stats from "../components/Stats"
 import FlexRow from "../components/utilities/FlexRow"
+import CardRow from "../components/utilities/CardRow"
 
 interface BreedSinglePageProps {
     data: {
@@ -160,7 +161,7 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
             {animalsForAdoption && (
                 <div className="animals-for-adoption">
                     <h2>Adopt a {breedName} today!</h2>
-                    <div className="cards">
+                    <FlexRow>
                         {animalsForAdoption.map((animalData) => (
                             <Card
                                 cardData={animalData}
@@ -168,7 +169,7 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
                                 key={animalData.slug}
                             />
                         ))}
-                    </div>
+                    </FlexRow>
                 </div>
             )}
         </Layout>

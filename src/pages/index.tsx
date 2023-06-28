@@ -2,6 +2,7 @@ import * as React from "react"
 import styled from "styled-components"
 import { HeadFC, Link, graphql } from "gatsby"
 import Card from "../components/Card"
+import FlexRow from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
 
 interface ListPageProps {
@@ -62,13 +63,6 @@ const SpeciesListItem = styled.li`
     margin-right: 20px;
 `
 
-const CardRow = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
-`
-
 export const Head: HeadFC = () => (
     <title>PetSpace - your place to learn about pet species and breeds</title>
 )
@@ -94,7 +88,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                         {speciesData.speciesType} Breeds:{" "}
                     </h2>
 
-                    <CardRow>
+                    <FlexRow>
                         {speciesData.breeds.map((breedData) => (
                             <Card
                                 cardData={breedData}
@@ -102,7 +96,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                                 key={breedData.slug}
                             />
                         ))}
-                    </CardRow>
+                    </FlexRow>
                 </div>
             ))}
         </Layout>

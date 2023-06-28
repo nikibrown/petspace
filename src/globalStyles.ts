@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components"
+import { designTokens } from "./components/designTokens"
 
 export const GlobalStyles = createGlobalStyle`
 	* {
@@ -9,7 +10,8 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	html, body {
-		font-family: sans-serif;
+		color: ${designTokens.colors.brandDark};
+		font-family: "Open Sans", sans-serif;
 		margin: 0;
 		padding: 0;
 	}
