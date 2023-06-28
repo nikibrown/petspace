@@ -115,6 +115,13 @@ const PageLink = styled(TextPageLink)`
     }
 `
 
+const TextColumn = styled.div`
+    flex: 1 0 100%;
+    @media screen and (min-width: 1200px) {
+        flex: 0 1 calc(50% - 1em);
+    }
+`
+
 const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
     const {
         breedName,
@@ -156,12 +163,7 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
 
             <Section>
                 <FlexRow>
-                    <div
-                        className="desc"
-                        style={{ flex: "0 1 calc(50% - 1em)" }}
-                    >
-                        {renderRichText(breedDescription)}
-                    </div>
+                    <TextColumn>{renderRichText(breedDescription)}</TextColumn>
 
                     <Stats statData={statData} />
                 </FlexRow>

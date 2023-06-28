@@ -21,12 +21,14 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${designTokens.fontSizes.small};
 		font-weight: ${designTokens.fontWeights.normal};
 		line-height: ${designTokens.lineHeights.text};
+		margin-top: 0;
 	}
 
 	h1 {
 		font-size: ${designTokens.fontSizes.xlarge};
 		font-weight: ${designTokens.fontWeights.semibold};
 		line-height: ${designTokens.lineHeights.heading};
+		margin-top: 0;
 	}
 
 	h2 {
@@ -39,5 +41,6 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${designTokens.fontSizes.medium};
 		font-weight: ${designTokens.fontWeights.semibold};
 		line-height: ${designTokens.lineHeights.heading};
+		margin-top: 0;
 	}
 `

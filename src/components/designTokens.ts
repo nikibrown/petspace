@@ -6,6 +6,7 @@ export const designTokens = {
         brandLight: "#fff", // white
         brandDark: "#333", // dark gray
         brandEmphasis: "#EA6403", // orange
+        brandBorder: "#bbb",
     },
     spacing: {
         small: "20px",

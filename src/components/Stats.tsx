@@ -14,10 +14,18 @@ interface StatsProps {
 }
 
 const BreedStats = styled.div`
-    background-color: lightgray;
-    border-radius: 6px;
-    flex: 0 1 calc(50% - 1em);
-    padding: 10px 20px;
+    flex: 1 0 100%;
+
+    @media screen and (min-width: 1200px) {
+        flex: 0 1 calc(50% - 1em);
+    }
+`
+
+const BreedStatsInner = styled.div`
+    background-color: #eee;
+    border: 1px solid #bbb;
+    border-radius: ${designTokens.borderRadius.default};
+    padding: ${designTokens.spacing.small};
 `
 
 const BreedStatsList = styled.ul`
@@ -27,11 +35,15 @@ const BreedStatsList = styled.ul`
 `
 
 const BreedStatsListItem = styled.li`
+    border-bottom: 1px solid #bbb;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 5px 0;
-    padding: 0;
+    padding: ${designTokens.spacing.small} 0;
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
 `
 
 const Stats: React.FC<StatsProps> = ({ statData }) => {
@@ -44,23 +56,26 @@ const Stats: React.FC<StatsProps> = ({ statData }) => {
 
     return (
         <BreedStats>
-            <h3>Breed Characteristics</h3>
-            <BreedStatsList>
-                <BreedStatsListItem>
-                    Life Expectancy:{" "}
-                    <BarGraph
-                        min={breedLifeExpectancyMin}
-                        max={breedLifeExpectancyMax}
-                    />
-                </BreedStatsListItem>
-                <BreedStatsListItem>
-                    Breed Friendliness:{" "}
-                    <RatingStars ratingNum={breedFriendliness} />
-                </BreedStatsListItem>
-                <BreedStatsListItem>
-                    Breed Shedding: <RatingStars ratingNum={breedShedding} />
-                </BreedStatsListItem>
-            </BreedStatsList>
+            <BreedStatsInner>
+                <h3>Breed Characteristics</h3>
+                <BreedStatsList>
+                    <BreedStatsListItem>
+                        Life Expectancy:{" "}
+                        <BarGraph
+                            min={breedLifeExpectancyMin}
+                            max={breedLifeExpectancyMax}
+                        />
+                    </BreedStatsListItem>
+                    <BreedStatsListItem>
+                        Breed Friendliness:{" "}
+                        <RatingStars ratingNum={breedFriendliness} />
+                    </BreedStatsListItem>
+                    <BreedStatsListItem>
+                        Breed Shedding:{" "}
+                        <RatingStars ratingNum={breedShedding} />
+                    </BreedStatsListItem>
+                </BreedStatsList>
+            </BreedStatsInner>
         </BreedStats>
     )
 }

@@ -41,6 +41,9 @@ const CardLinkHeadline = styled(CardLink)`
     color: ${designTokens.colors.brandPrimary};
     text-decoration: none;
 `
+const CardImage = styled.div`
+    margin-bottom: ${designTokens.spacing.small};
+`
 
 const CardBody = styled.div`
     display: flex;
@@ -56,7 +59,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
 
     return (
         <CardWrapper>
-            <div className="card-image">
+            <CardImage>
                 <CardLink to={url}>
                     {cardImage && (
                         <GatsbyImage
@@ -65,7 +68,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
                         />
                     )}
                 </CardLink>
-            </div>
+            </CardImage>
             <CardBody>
                 <h3>
                     <CardLinkHeadline to={url}>{cardTitle}</CardLinkHeadline>
