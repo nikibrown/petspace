@@ -28,7 +28,7 @@ const PageCard = styled.div`
     border: 1px solid gray;
     border-radius: 6px;
     flex: 1 0 80vw;
-    padding: 20px;
+    padding: 15px;
 
     @media screen and (min-width: 600px) {
         flex: 0 1 calc(50% - 1em);
@@ -36,6 +36,10 @@ const PageCard = styled.div`
 
     @media screen and (min-width: 1200px) {
         flex: 0 1 calc(25% - 1em);
+    }
+
+    img {
+        border-radius: 6px;
     }
 `
 
@@ -91,7 +95,7 @@ const Card: React.FC<CardProps> = ({ cardData, url }) => {
                 </h3>
                 {cardText && renderRichText(cardText, options)}
 
-                <ButtonCTA url={url}>Learn More</ButtonCTA>
+                <ButtonCTA url={url}>Learn More &rarr;</ButtonCTA>
             </div>
         </PageCard>
     )

@@ -8,6 +8,10 @@ import Card from "../components/Card"
 import Stats from "../components/Stats"
 import FlexRow from "../components/utilities/FlexRow"
 import Section from "../components/utilities/Section"
+import { designTokens } from "../components/designTokens"
+import styled from "styled-components"
+
+import { Link as TextPageLink } from "gatsby"
 
 interface BreedSinglePageProps {
     data: {
@@ -98,6 +102,14 @@ export const Head: HeadFC = ({ data }) => (
     </title>
 )
 
+const PageLink = styled(TextPageLink)`
+    color: ${designTokens.colors.brandPrimary};
+    text-decoration: none;
+    &:hover {
+        text-decoraton: underline;
+    }
+`
+
 const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
     const {
         breedName,
@@ -142,10 +154,12 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
         <Layout>
             <Section>
                 <p>
-                    <Link to={`/`}>Back to Pets</Link>
+                    <PageLink to={`/`}>&larr; Back to Species List</PageLink>
                 </p>
 
-                <h1>{breedName}</h1>
+                <h1>
+                    {species.speciesType}: {breedName}
+                </h1>
             </Section>
 
             <Section>

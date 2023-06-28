@@ -43,7 +43,7 @@ const Badge = styled.span`
     color: #fff;
     background-color: ${designTokens.colors.brandWarning};
     border-radius: 50%;
-    line-height: 0.5;
+    line-height: 0;
     font-size: 12px;
     padding: 10px;
     width: 4px;
@@ -51,7 +51,7 @@ const Badge = styled.span`
     text-align: center;
     position: absolute;
     top: -6px;
-    right: -15px;
+    right: -6px;
 `
 
 const Header: React.FC<HeaderProps> = ({ siteTitle }) => {

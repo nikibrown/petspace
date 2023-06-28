@@ -75,6 +75,7 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                 <h1>Pet Species</h1>
 
                 <SpeciesList>
+                    <SpeciesListItem>Jump to: </SpeciesListItem>
                     {data.allContentfulSpecies.nodes.map((speciesData) => (
                         <SpeciesListItem key={speciesData.id}>
                             <Link to={`/#${speciesData.slug}s`}>

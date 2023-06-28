@@ -1,10 +1,14 @@
 import * as React from "react"
-import { HeadFC, Link, graphql } from "gatsby"
+import { HeadFC, graphql } from "gatsby"
+import { Link as TextPageLink } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { INLINES, BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
+import styled from "styled-components"
+import ButtonCTA from "../components/ButtonCTA"
+import { designTokens } from "../components/designTokens"
 
 interface AnimalSinglePageProps {
     data: {
@@ -53,6 +57,13 @@ export const query = graphql`
         }
     }
 `
+const PageLink = styled(TextPageLink)`
+    color: ${designTokens.colors.brandPrimary};
+    text-decoration: none;
+    &:hover {
+        text-decoraton: underline;
+    }
+`
 
 export const Head: HeadFC = ({ data }) => (
     <title>
@@ -86,12 +97,13 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
         <Layout>
             <Section>
                 <p>
-                    <Link
+                    <PageLink
                         to={`/${data.contentfulAnimals.speciesType.slug}/breed/${data.contentfulAnimals.breedType.slug}`}
                     >
-                        Back to {data.contentfulAnimals.breedType.breedName}{" "}
+                        &larr; Back to{" "}
+                        {data.contentfulAnimals.breedType.breedName}{" "}
                         {data.contentfulAnimals.speciesType.speciesType}s
-                    </Link>
+                    </PageLink>
                 </p>
 
                 <h1>{data.contentfulAnimals.animalName}</h1>
@@ -110,13 +122,9 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
                 </div>
 
                 {data.contentfulAnimals.adoptionLink && (
-                    <a
-                        href={data.contentfulAnimals.adoptionLink}
-                        target="_blank"
-                        rel="nofollow"
-                    >
-                        Adopt {data.contentfulAnimals.animalName}
-                    </a>
+                    <ButtonCTA url={data.contentfulAnimals.adoptionLink}>
+                        Adopt {data.contentfulAnimals.animalName} &rarr;
+                    </ButtonCTA>
                 )}
             </Section>
         </Layout>
