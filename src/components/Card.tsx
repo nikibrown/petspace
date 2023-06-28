@@ -46,9 +46,6 @@ const PageCard = styled.div`
 const CardLinkHeadline = styled(CardLink)`
     color: ${designTokens.colors.brandPrimary};
     text-decoration: none;
-    &:hover {
-        text-decoraton: underline;
-    }
 `
 
 const Card: React.FC<CardProps> = ({ cardData, url }) => {

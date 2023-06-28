@@ -10,7 +10,7 @@ interface LayoutProps {
 }
 
 const Main = styled.main`
-    padding: 50px 0;
+    padding: 20px 0;
 `
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

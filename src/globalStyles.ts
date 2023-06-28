@@ -3,8 +3,9 @@ import { designTokens } from "./components/designTokens"
 
 export const GlobalStyles = createGlobalStyle`
 	* {
-	box-sizing: border-box;
+		box-sizing: border-box;
 	}
+
 	html {
 		scroll-behavior: smooth;
 	}

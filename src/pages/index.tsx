@@ -1,10 +1,12 @@
 import * as React from "react"
 import styled from "styled-components"
-import { HeadFC, Link, graphql } from "gatsby"
+import { HeadFC, graphql } from "gatsby"
+import { Link as TextPageLink } from "gatsby"
 import Card from "../components/Card"
 import FlexRow from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
+import { designTokens } from "../components/designTokens"
 
 interface ListPageProps {
     data: {
@@ -64,6 +66,14 @@ const SpeciesListItem = styled.li`
     margin-right: 20px;
 `
 
+const PageLink = styled(TextPageLink)`
+    color: ${designTokens.colors.brandPrimary};
+    text-decoration: none;
+    &:hover {
+        text-decoraton: underline;
+    }
+`
+
 export const Head: HeadFC = () => (
     <title>PetSpace - your place to learn about pet species and breeds</title>
 )
@@ -78,9 +88,9 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                     <SpeciesListItem>Jump to: </SpeciesListItem>
                     {data.allContentfulSpecies.nodes.map((speciesData) => (
                         <SpeciesListItem key={speciesData.id}>
-                            <Link to={`/#${speciesData.slug}s`}>
+                            <PageLink to={`/#${speciesData.slug}s`}>
                                 {speciesData.speciesType}s
-                            </Link>
+                            </PageLink>
                         </SpeciesListItem>
                     ))}
                 </SpeciesList>
