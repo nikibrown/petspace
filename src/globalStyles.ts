@@ -16,4 +16,28 @@ export const GlobalStyles = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 	}
+
+	p {
+		font-size: ${designTokens.fontSizes.small};
+		font-weight: ${designTokens.fontWeights.normal};
+		line-height: ${designTokens.lineHeights.text};
+	}
+
+	h1 {
+		font-size: ${designTokens.fontSizes.xlarge};
+		font-weight: ${designTokens.fontWeights.semibold};
+		line-height: ${designTokens.lineHeights.heading};
+	}
+
+	h2 {
+		font-size: ${designTokens.fontSizes.large};
+		font-weight: ${designTokens.fontWeights.semibold};
+		line-height: ${designTokens.lineHeights.heading};
+	}
+
+	h3 {
+		font-size: ${designTokens.fontSizes.medium};
+		font-weight: ${designTokens.fontWeights.semibold};
+		line-height: ${designTokens.lineHeights.heading};
+	}
 `
