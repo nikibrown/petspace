@@ -123,4 +123,16 @@ footer p {
   }
 }
 
+.bar-bg {
+  background-color: gray;
+  border: 1px solid black;
+}
+
+.bar {
+  background-color: white;
+  text-align: right;
+}
+
+
+
 `

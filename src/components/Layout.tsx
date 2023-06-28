@@ -6,11 +6,10 @@ import { GlobalStyles } from '../globalStyles'
 
 
 interface LayoutProps {
-  pageTitle: string
   children: React.ReactNode
 }
 
-const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
 
     const data = useStaticQuery(graphql`
         query {
@@ -27,7 +26,6 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
 			<Header siteTitle={data.site.siteMetadata.title} />
 			<main>
 				<div className="container">
-                    {pageTitle && <h1>{pageTitle}</h1>}
 					{children}
 				</div>	
 			</main>

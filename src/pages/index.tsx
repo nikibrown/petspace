@@ -3,7 +3,7 @@ import { HeadFC, PageProps, Link, graphql } from "gatsby"
 import Card from '../components/Card'
 import Layout from '../components/Layout'
 
-interface BreedQueryResult {
+interface ListPageProps {
   allContentfulSpecies: {
     nodes: {
       speciesType: string
@@ -26,7 +26,7 @@ interface BreedQueryResult {
   }
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
   query MyQuery {
     allContentfulSpecies(sort: { speciesType: ASC }) {
       nodes {
@@ -51,7 +51,7 @@ export const pageQuery = graphql`
 
 export const Head: HeadFC = () => <title>PetSpace</title>
 
-const BreedListPage: React.FC<PageProps<BreedQueryResult>> = ({ data }) => {
+const ListPage: React.FC<ListPageProps> = ({ data }) => {
   return (
     <Layout>
       <h1>Pet Species</h1>
@@ -79,4 +79,4 @@ const BreedListPage: React.FC<PageProps<BreedQueryResult>> = ({ data }) => {
   )
 }
 
-export default BreedListPage
+export default ListPage
