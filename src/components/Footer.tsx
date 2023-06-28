@@ -1,5 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
+import { designTokens } from "./designTokens"
+
 import { Link } from "gatsby"
 import Container from "./utilities/Container"
 import FlexRow from "./utilities/FlexRow"
@@ -9,15 +11,14 @@ interface FooterProps {
 }
 
 const PageFooter = styled.footer`
-    background-color: #333;
-    color: #fff;
+    background-color: ${designTokens.colors.brandDark};
+    color: ${designTokens.colors.brandLight};
     padding: 20px 0;
     a {
-        color: #fff;
+        color: ${designTokens.colors.brandLight};
         text-decoration: none;
-        transition: color 0.15s ease-in-out;
         &:hover {
-            color: #e9e8e8;
+            text-decoration: underline;
         }
     }
 

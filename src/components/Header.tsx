@@ -1,5 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
+import { designTokens } from "./designTokens"
 import { useState } from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
@@ -11,7 +12,7 @@ interface HeaderProps {
 }
 
 const PageHeader = styled.header`
-    background-color: #2e89ff;
+    background-color: ${designTokens.colors.brandPrimary};
     color: green;
     padding: 20px 0;
     h1 {
@@ -19,12 +20,9 @@ const PageHeader = styled.header`
     }
 
     a {
-        color: #fff;
+        color: ${designTokens.colors.brandLight};
         text-decoration: none;
         transition: color 0.15s ease-in-out;
-        &:hover {
-            color: #e9e8e8;
-        }
     }
 `
 
@@ -38,7 +36,7 @@ const Avatar = styled.div`
 const Badge = styled.span`
     display: block;
     color: #fff;
-    background-color: #ce4141;
+    background-color: ${designTokens.colors.brandWarning};
     border-radius: 50%;
     line-height: 0.5;
     font-size: 12px;

@@ -1,8 +1,18 @@
 import React from "react"
+import styled from "styled-components"
+import { designTokens } from "./designTokens"
 
 interface RatingStarsProps {
     ratingNum: number
 }
+
+const FilledStar = styled.span`
+    color: ${designTokens.colors.brandEmphasis};
+`
+
+const EmptyStar = styled.span`
+    color: ${designTokens.colors.brandEmphasis};
+`
 
 const RatingStars: React.FC<RatingStarsProps> = ({ ratingNum }) => {
     const filledStars = Array.from({ length: ratingNum }, (_, i) => "★")
@@ -14,11 +24,11 @@ const RatingStars: React.FC<RatingStarsProps> = ({ ratingNum }) => {
     return (
         <span className="rating">
             {filledStars.map((star, index) => (
-                <span key={index}>{star}</span>
+                <FilledStar key={index}>{star}</FilledStar>
             ))}
 
             {emptyStars.map((star, index) => (
-                <span key={index}>{star}</span>
+                <EmptyStar key={index}>{star}</EmptyStar>
             ))}
         </span>
     )

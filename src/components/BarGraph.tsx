@@ -1,5 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
+import { designTokens } from "./designTokens"
 
 interface BarGraphProps {
     min: number
@@ -7,12 +8,12 @@ interface BarGraphProps {
 }
 
 const BarBg = styled.div`
-    background-color: gray;
-    border: 1px solid black;
+    background-color: ${designTokens.colors.brandDark};
+    border: 1px solid ${designTokens.colors.brandDark};
 `
 
 const Bar = styled.div`
-    background-color: white;
+    background-color: ${designTokens.colors.brandLight};
     text-align: right;
 `
 
