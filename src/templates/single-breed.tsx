@@ -16,6 +16,7 @@ interface BreedSinglePageProps {
     data: {
         contentfulBreed: {
             id: string
+            slug: string
             breedFriendliness: number
             breedDescription: {
                 raw: string
@@ -30,25 +31,21 @@ interface BreedSinglePageProps {
                 gatsbyImageData: IGatsbyImageData
             }
             breedShedding: number
-            slug: string
             animalsForAdoption: {
                 id: string
                 slug: string
                 animalName: string
-                speciesType: {
-                    slug: string
-                }
-                breedType: {
-                    breedName: string
-                }
+
                 animalPhoto: {
                     gatsbyImageData: IGatsbyImageData
                 }
-                animalDescription: {
-                    raw: string
-                }
             }[]
         }
+    }
+    pageContext: {
+        slug: string
+        parentSlug: string
+        parentSpecies: string
     }
 }
 
@@ -56,53 +53,38 @@ export const query = graphql`
     query ($slug: String) {
         contentfulBreed(slug: { eq: $slug }) {
             id
-            breedFriendliness
-            breedDescription {
-                raw
-            }
-            breedLifeExpectancyMax
-            breedLifeExpectancyMin
+            slug
             breedName
-            species {
-                speciesType
-            }
             breedPhoto {
                 gatsbyImageData(layout: FULL_WIDTH)
             }
             breedShedding
-            slug
+
+            breedLifeExpectancyMin
+            breedLifeExpectancyMax
+            breedFriendliness
+            breedDescription {
+                raw
+            }
             animalsForAdoption {
                 id
-                slug
                 animalName
-                speciesType {
-                    slug
-                }
-                breedType {
-                    breedName
-                }
+                slug
                 animalPhoto {
                     gatsbyImageData(layout: FULL_WIDTH)
                 }
-                animalDescription {
-                    raw
-                }
-            }
-            species {
-                slug
             }
         }
     }
 `
-export const Head: HeadFC = ({ data }) => (
+export const Head: HeadFC = ({ data, pageContext }) => (
     <>
         <title>
-            {data.contentfulBreed.species.speciesType}s -{" "}
-            {data.contentfulBreed.breedName}
+            {pageContext.parentSpecies}s - {data.contentfulBreed.breedName}
         </title>
         <meta
             name="description"
-            content={`Your place to learn about ${data.contentfulBreed.breedName} ${data.contentfulBreed.species.speciesType}s`}
+            content={`Your place to learn about ${data.contentfulBreed.breedName} ${pageContext.parentSpecies}s`}
         />
     </>
 )
@@ -122,7 +104,10 @@ const TextColumn = styled.div`
     }
 `
 
-const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
+const BreedSinglePage: React.FC<BreedSinglePageProps> = ({
+    data,
+    pageContext,
+}) => {
     const {
         breedName,
         breedLifeExpectancyMin,
@@ -132,7 +117,6 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
         breedDescription,
         breedPhoto,
         animalsForAdoption,
-        species,
         slug,
     } = data.contentfulBreed
 
@@ -145,13 +129,22 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
 
     return (
         <Layout>
+            {/* <Section>
+                <h1>{data.contentfulBreed.slug}</h1>
+                <h1>{JSON.stringify(pageContext)}</h1>
+                <ul>
+                    {data.contentfulBreed.animalsForAdoption?.map((animal) => (
+                        <li key={animal.slug}>{animal.animalName}</li>
+                    ))}
+                </ul>
+            </Section> */}
             <Section>
                 <p>
                     <PageLink to={`/`}>&larr; Back to Species List</PageLink>
                 </p>
 
                 <h1>
-                    {species.speciesType}: {breedName}
+                    {pageContext.parentSpecies}: {breedName}
                 </h1>
             </Section>
 
@@ -173,13 +166,14 @@ const BreedSinglePage: React.FC<BreedSinglePageProps> = ({ data }) => {
                 {animalsForAdoption && (
                     <div className="animals-for-adoption">
                         <h2>
-                            Adopt a {breedName} {species.speciesType} today!
+                            Adopt a {breedName} {pageContext.parentSpecies}{" "}
+                            today!
                         </h2>
                         <FlexRow>
                             {animalsForAdoption.map((animalData) => (
                                 <Card
                                     cardData={animalData}
-                                    url={`/${animalData.speciesType.slug}/breed/${slug}/${animalData.slug}`}
+                                    url={`/${pageContext.parentSlug}s/${slug}/${animalData.slug}`}
                                     key={animalData.slug}
                                 />
                             ))}
