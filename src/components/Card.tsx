@@ -52,7 +52,7 @@ const CardBody = styled.div`
     align-items: self-start;
 `
 
-const Card: React.FC<CardProps> = ({ cardData, url }) => {
+const Card = ({ cardData, url }: CardProps) => {
     const cardImage = cardData.breedPhoto || cardData.animalPhoto
     const cardTitle = cardData.breedName || cardData.animalName
     const cardText = cardData.breedSummary || cardData.animalDescription
