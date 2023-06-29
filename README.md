@@ -9,7 +9,7 @@
 
 # View site
 
-I've deployed this site to Gatsby Cloud: [https://petspace.gatsbyjs.io/](petspace.gatsbyjs.io)
+I've deployed this site to Gatsby Cloud: [https://bit.ly/petspace-nb](https://bit.ly/petspace-nb)
 
 # Local setup
 
