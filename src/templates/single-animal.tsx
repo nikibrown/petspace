@@ -1,28 +1,24 @@
 import * as React from "react"
-import { HeadFC, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { Link as TextPageLink } from "gatsby"
+import type { PageProps } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+
+// components
+import ButtonCTA from "../components/ButtonCTA"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
+
+// types
+import type { SingleAnimal } from "../types/types"
+
+// styles
 import styled from "styled-components"
-import ButtonCTA from "../components/ButtonCTA"
 import { designTokens } from "../components/designTokens"
 
-interface AnimalSinglePageProps {
-    data: {
-        contentfulAnimals: {
-            id: string
-            animalName: string
-            animalPhoto: {
-                gatsbyImageData: IGatsbyImageData
-            }
-            animalDescription: {
-                raw: string
-            }
-            adoptionLink: string
-        }
-    }
+type GraphQLResult = {
+    contentfulAnimals: SingleAnimal
     pageContext: {
         slug: string
         parentBreedSlug: string
@@ -32,33 +28,7 @@ interface AnimalSinglePageProps {
     }
 }
 
-export const query = graphql`
-    query ($slug: String) {
-        contentfulAnimals(slug: { eq: $slug }) {
-            id
-            animalName
-            animalPhoto {
-                gatsbyImageData(layout: FULL_WIDTH)
-            }
-            animalDescription {
-                raw
-            }
-            adoptionLink
-        }
-    }
-`
-const PageLink = styled(TextPageLink)`
-    color: ${designTokens.colors.brandPrimary};
-    text-decoration: none;
-    &:hover {
-        text-decoraton: underline;
-    }
-`
-
-const ImageContainer = styled.div`
-    margin-bottom: ${designTokens.spacing.small};
-`
-export const Head: HeadFC = ({ data, pageContext }) => (
+export const Head = ({ data, pageContext }) => (
     <>
         <title>
             {pageContext.parentSpecies}s - {pageContext.parentBreed} -{" "}
@@ -71,10 +41,7 @@ export const Head: HeadFC = ({ data, pageContext }) => (
     </>
 )
 
-const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({
-    data,
-    pageContext,
-}) => {
+const AnimalSinglePage = ({ data, pageContext }: PageProps<GraphQLResult>) => {
     return (
         <Layout>
             <Section>
@@ -113,3 +80,31 @@ const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({
 }
 
 export default AnimalSinglePage
+
+export const query = graphql`
+    query ($slug: String) {
+        contentfulAnimals(slug: { eq: $slug }) {
+            id
+            animalName
+            animalPhoto {
+                gatsbyImageData(layout: FULL_WIDTH)
+            }
+            animalDescription {
+                raw
+            }
+            adoptionLink
+        }
+    }
+`
+
+const PageLink = styled(TextPageLink)`
+    color: ${designTokens.colors.brandPrimary};
+    text-decoration: none;
+    &:hover {
+        text-decoraton: underline;
+    }
+`
+
+const ImageContainer = styled.div`
+    margin-bottom: ${designTokens.spacing.small};
+`

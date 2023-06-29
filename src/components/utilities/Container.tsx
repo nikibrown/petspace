@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     }
 `
 
-const Container: React.FC<ContainerProps> = ({ children }) => {
+const Container = ({ children }: ContainerProps) => {
     return <Wrapper>{children}</Wrapper>
 }
 

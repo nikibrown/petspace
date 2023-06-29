@@ -15,15 +15,17 @@ const HeaderWrapper = styled.header`
     background-color: ${designTokens.colors.brandPrimary};
     color: green;
     padding: 20px 0;
-    h1 {
-        margin: 0;
-    }
 
     a {
         color: ${designTokens.colors.brandLight};
         text-decoration: none;
         transition: color 0.15s ease-in-out;
     }
+`
+
+const Logo = styled.h1`
+    font-size: ${designTokens.fontSizes.xlarge};
+    margin: 0;
 `
 
 const Avatar = styled.div`
@@ -51,16 +53,16 @@ const Badge = styled.span`
     right: -6px;
 `
 
-const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
+const Header = ({ siteTitle }: HeaderProps) => {
     const [showNotifications, setShowNotifications] = useState(true)
 
     return (
         <HeaderWrapper>
             <Container>
                 <FlexRowSpaced>
-                    <h1>
+                    <Logo>
                         <Link to="/">{siteTitle}</Link>
-                    </h1>
+                    </Logo>
                     <Avatar onClick={() => setShowNotifications(false)}>
                         <StaticImage alt="Avatar" src="../images/paw.svg" />
                         {showNotifications ? (

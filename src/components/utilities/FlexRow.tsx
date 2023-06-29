@@ -5,7 +5,7 @@ interface FlexRowProps {
     children: React.ReactNode
 }
 
-const FlexRow: React.FC<FlexRowProps> = ({ children }) => {
+const FlexRow = ({ children }: FlexRowProps) => {
     return <Wrapper>{children}</Wrapper>
 }
 

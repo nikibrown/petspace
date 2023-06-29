@@ -11,7 +11,7 @@ const Wrapper = styled.section`
     padding: ${designTokens.spacing.small} 0;
 `
 
-const Section: React.FC<SectionProps> = ({ children }) => {
+const Section = ({ children }: SectionProps) => {
     return (
         <Wrapper>
             <Container>{children}</Container>

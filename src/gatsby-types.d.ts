@@ -4095,10 +4095,10 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
-type PageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PageQueryQuery = { readonly allContentfulSpecies: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly id: string, readonly speciesType: string | null, readonly breeds: ReadonlyArray<{ readonly breedName: string | null, readonly slug: string | null, readonly id: string, readonly animalsForAdoption: ReadonlyArray<{ readonly slug: string | null, readonly id: string } | null> | null } | null> | null }> } };
+type Unnamed_1_Query = { readonly allContentfulSpecies: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly id: string, readonly speciesType: string | null, readonly breeds: ReadonlyArray<{ readonly breedName: string | null, readonly slug: string | null, readonly id: string, readonly animalsForAdoption: ReadonlyArray<{ readonly slug: string | null, readonly id: string } | null> | null } | null> | null }> } };
 
 
 }

@@ -2,7 +2,6 @@ import * as React from "react"
 import Container from "./utilities/Container"
 import { designTokens } from "./designTokens"
 import { FlexRowSpaced } from "./utilities/FlexRow"
-import { Link } from "gatsby"
 import styled from "styled-components"
 
 interface FooterProps {
@@ -62,14 +61,12 @@ const ToolTip = styled.span`
     }
 `
 
-const Footer: React.FC<FooterProps> = ({ siteTitle }) => {
+const Footer = ({ siteTitle }: FooterProps) => {
     return (
         <FooterWrapper>
             <Container>
                 <FlexRowSpaced>
-                    <p>
-                        &copy; <Link to="/">{siteTitle}</Link> 2023
-                    </p>
+                    <p>&copy; {siteTitle} 2023</p>
                     <p>
                         <FooterEmoji>
                             🐱 <ToolTip className="tooltip">meow</ToolTip>

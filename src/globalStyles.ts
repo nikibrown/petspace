@@ -6,11 +6,11 @@ export const GlobalStyles = createGlobalStyle`
 		box-sizing: border-box;
 	}
 
-	html {
-		scroll-behavior: smooth;
-	}
+	html * {
+    	box-sizing: border-box;
+  	}
 
-	html, body {
+	body {
 		color: ${designTokens.colors.brandDark};
 		font-family: "Open Sans", sans-serif;
 		margin: 0;
@@ -25,20 +25,20 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	h1 {
-		font-size: ${designTokens.fontSizes.xlarge};
+		font-size: ${designTokens.fontSizes.large};
 		font-weight: ${designTokens.fontWeights.semibold};
 		line-height: ${designTokens.lineHeights.heading};
 		margin-top: 0;
 	}
 
 	h2 {
-		font-size: ${designTokens.fontSizes.large};
+		font-size: ${designTokens.fontSizes.medium};
 		font-weight: ${designTokens.fontWeights.semibold};
 		line-height: ${designTokens.lineHeights.heading};
 	}
 
 	h3 {
-		font-size: ${designTokens.fontSizes.medium};
+		font-size: ${designTokens.fontSizes.small};
 		font-weight: ${designTokens.fontWeights.semibold};
 		line-height: ${designTokens.lineHeights.heading};
 		margin-top: 0;

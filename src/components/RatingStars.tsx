@@ -14,7 +14,7 @@ const EmptyStar = styled.span`
     color: ${designTokens.colors.brandEmphasis};
 `
 
-const RatingStars: React.FC<RatingStarsProps> = ({ ratingNum }) => {
+const RatingStars = ({ ratingNum }: RatingStarsProps) => {
     const filledStars = Array.from({ length: ratingNum }, (_, i) => "★")
 
     const emptyStarsNum = 5 - ratingNum

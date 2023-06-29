@@ -4,7 +4,7 @@ import { designTokens } from "./designTokens"
 import RatingStars from "./RatingStars"
 import styled from "styled-components"
 
-interface StatsProps {
+interface StatProps {
     statData: {
         breedLifeExpectancyMin: number
         breedLifeExpectancyMax: number
@@ -46,7 +46,7 @@ const BreedStatsListItem = styled.li`
     }
 `
 
-const Stats: React.FC<StatsProps> = ({ statData }) => {
+const Stats = ({ statData }: StatProps) => {
     const {
         breedLifeExpectancyMin,
         breedLifeExpectancyMax,

@@ -21,7 +21,7 @@ const Wrapper = styled(LinkButton)`
     }
 `
 
-const ButtonCTA: React.FC<ButtonCTAProps> = ({ children, url }) => {
+const ButtonCTA = ({ children, url }: ButtonCTAProps) => {
     return <Wrapper to={url}>{children}</Wrapper>
 }
 

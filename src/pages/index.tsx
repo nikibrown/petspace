@@ -1,80 +1,28 @@
 import * as React from "react"
-import styled from "styled-components"
-import { HeadFC, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { Link as TextPageLink } from "gatsby"
+import type { PageProps } from "gatsby"
+
+// components
 import Card from "../components/Card"
 import { FlexRowStart } from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
+
+// types
+import type { Species } from "../types/types"
+
+// styles
+import styled from "styled-components"
 import { designTokens } from "../components/designTokens"
 
-interface ListPageProps {
-    data: {
-        allContentfulSpecies: {
-            nodes: {
-                speciesType: string
-                slug: string
-                id: string
-                breeds: {
-                    slug: string
-                    breedName: string
-                    breedSummary: {
-                        raw: string
-                    }
-                    breedPhoto: {
-                        description: string
-                        gatsbyImageData: {
-                            layout: string
-                        }
-                    }
-                }[]
-            }[]
-        }
+type GraphQLResult = {
+    allContentfulSpecies: {
+        nodes: Species[]
     }
 }
 
-export const query = graphql`
-    query {
-        allContentfulSpecies(sort: { speciesType: ASC }) {
-            nodes {
-                speciesType
-                slug
-                id
-                breeds {
-                    slug
-                    breedName
-                    breedSummary {
-                        raw
-                    }
-                    breedPhoto {
-                        description
-                        gatsbyImageData(layout: FULL_WIDTH)
-                    }
-                }
-            }
-        }
-    }
-`
-
-const SpeciesList = styled.ul`
-    margin: 0;
-    padding: 0;
-`
-
-const SpeciesListItem = styled.li`
-    display: inline;
-    margin-right: 20px;
-`
-
-const PageLink = styled(TextPageLink)`
-    color: ${designTokens.colors.brandPrimary};
-    text-decoration: none;
-    &:hover {
-        text-decoraton: underline;
-    }
-`
-
-export const Head: HeadFC = () => (
+export const Head = () => (
     <>
         <title>PetSpace</title>
         <meta
@@ -84,11 +32,14 @@ export const Head: HeadFC = () => (
     </>
 )
 
-const ListPage: React.FC<ListPageProps> = ({ data }) => {
+const ListPage = ({ data }: PageProps<GraphQLResult>) => {
     return (
         <Layout>
             <Section>
-                <h1>Pet Species</h1>
+                <Intro>
+                    Welcome to PetSpace, your social network for pets. Here you
+                    can learn about pet species, breeds and adoptable pets.
+                </Intro>
 
                 <SpeciesList>
                     <SpeciesListItem>Jump to: </SpeciesListItem>
@@ -124,3 +75,48 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
 }
 
 export default ListPage
+
+export const query = graphql`
+    query {
+        allContentfulSpecies(sort: { speciesType: ASC }) {
+            nodes {
+                speciesType
+                slug
+                id
+                breeds {
+                    slug
+                    breedName
+                    breedSummary {
+                        raw
+                    }
+                    breedPhoto {
+                        description
+                        gatsbyImageData(layout: FULL_WIDTH)
+                    }
+                }
+            }
+        }
+    }
+`
+
+const Intro = styled.p`
+    font-size: ${designTokens.fontSizes.medium};
+    font-weight: ${designTokens.fontWeights.normal};
+`
+const SpeciesList = styled.ul`
+    margin: 0;
+    padding: 0;
+`
+
+const SpeciesListItem = styled.li`
+    display: inline;
+    margin-right: 20px;
+`
+
+const PageLink = styled(TextPageLink)`
+    color: ${designTokens.colors.brandPrimary};
+    text-decoration: none;
+    &:hover {
+        text-decoraton: underline;
+    }
+`

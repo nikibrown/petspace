@@ -21,7 +21,7 @@ const Bar = styled.div`
     height: 100%;
 `
 
-const BarGraph: React.FC<BarGraphProps> = ({ min, max }) => {
+const BarGraph = ({ min, max }: BarGraphProps) => {
     const barLength = `${Math.floor((max / 18) * 100)}%`
 
     return (
