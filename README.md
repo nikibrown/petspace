@@ -1,49 +1,50 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal TypeScript Starter
-</h1>
+# Calendly Frontend Engineer Interview Exercise
 
-## 🚀 Quick start
+## 🐱 🐶 🐸 PetSpace
 
-1.  **Create a Gatsby site.**
+```
+🧑‍💻 Niki Brown
+📧 hi@nikibrown.com
+```
 
-    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
+## Install dependencies
 
-    ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
-    ```
+```bash
+cd ~/location-of-project
+npm install
+```
 
-2.  **Start developing.**
+## Run the development server:
 
-    Navigate into your new site’s directory and start it up.
+```bash
+npm run dev
+```
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Site should run locally at [http://localhost:8000](http://localhost:8000)
 
-3.  **Open the code and start customizing!**
+1.  **Design file / wireframe**
 
-    Your site is now running at http://localhost:8000!
+First step after reading the exercise description was to quickly generate a high-fidelity wireframe 🎨
+[View Figma File](https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=1%3A2&mode=design&t=TtCf1lqRhzqHMvId-1)
 
-    Edit `src/pages/index.tsx` to see your site update in real-time!
+2. \*\* Create Content Model in Contentful
 
-4.  **Learn more**
+Keeping scaling in mind I created three content types in relation to the initial information offered.
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+-   Species - since this will scale beyond dog breeds. Species currently include cats, dogs and reptiles.
+-   Breeds - Breeds are a subset of species.
+-   Individual Animals - These are individual animals that are available for adoption.
 
-## 🚀 Quick start (Netlify)
+When adding new animals and breeds, I created reference fields to help aid with URL creation and querying related content.
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+-   Species reference Breeds
+-   Breeds reference individual animals
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+3. **Development**
+
+-   Used the Gatsby CLI to create a site and set things up with Contentful, Styled Components, Typescript
+-   Still working through some typescript errors
+
+4. **🚀 Deploy**
+
+-   Deployed to Gatsby Cloud: [https://petspace.gatsbyjs.io/](petspace.gatsbyjs.io)
