@@ -13,12 +13,15 @@ I've deployed this site to Gatsby Cloud: [https://petspace.gatsbyjs.io/](petspac
 
 # Local setup
 
-Clone this repo `git@github.com:nikibrown/petspace.git`
+-   Github repository: [https://github.com/nikibrown/petspace](https://github.com/nikibrown/petspace)
 
 ```bash
+git clone git@github.com:nikibrown/petspace.git
 cd ~/location-of-project
 npm install
 ```
+
+-   Create `.env.development` and `.env.production` files in the root of the project and import Contentful API keys
 
 # Build and run the project
 
@@ -32,12 +35,16 @@ This builds and serves the site at [http://localhost:9000](http://localhost:9000
 
 ## Design file / wireframe
 
+---
+
 First step after reading the exercise description was to quickly generate a high-fidelity wireframe 🎨
 
--   <a href="https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=1%3A2&mode=design&t=TtCf1lqRhzqHMvId-1" target="_blank">Figma list page wireframe</a>
--   <a href="https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=0-1&mode=design" target="_blank">Figma breed page wireframe</a>
+-   [Figma list page wireframe](https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=1%3A2&mode=design&t=TtCf1lqRhzqHMvId-1)
+-   [Figma breed page wireframe](https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=0-1&mode=design)
 
 ## Content Model in Contentful
+
+---
 
 With scaling in mind I created three content types
 
@@ -54,6 +61,8 @@ With scaling in mind I created three content types
 
 ## Development
 
+---
+
 -   Set up `designTokens` for use with styled components to enable consistent and reusable brand colors, spacing, type sizes and typefaces
 -   Set up reusable utility components for layout: `<Container>`, `<FlexRow>`, `<Section>` with variations for layouts etc.
 -   Moved reusable chunks of code to components for future scalability
@@ -61,11 +70,15 @@ With scaling in mind I created three content types
 
 ## Issues
 
+---
+
 -   I ran into some issues initially with my reference fields creating circular dependencies causing build errors. I updated the fields to only have references from parent => children content.
 -   I also decided to rename some contentful fields to make things less confusing. There are still a few fields that have confusing API names.
 -   There are still a few TypeScript warnings when I run the typecheck. I'm admittedly a bit newer to TypeScript but actively working on learning more.
 
 ## Further Development
+
+---
 
 -   Overall this was a fun exercise that helped me refresh my knowledge of Contentful, Gatsby and TypeScript.
 -   If allowed more time I would flesh out the design more. I initially spend 10 minutes making a high-ish fidelity wireframe.
