@@ -9,12 +9,14 @@ interface AnimalForAdoption {
 interface Breed {
     slug: string
     id: string
+    breedName: string
     animalsForAdoption: AnimalForAdoption[]
 }
 
 interface Node {
     slug: string
     id: string
+    speciesType: string
     breeds: Breed[]
 }
 
@@ -38,7 +40,9 @@ export const createPages: GatsbyNode["createPages"] = async ({
                 nodes {
                     slug
                     id
+                    speciesType
                     breeds {
+                        breedName
                         slug
                         id
                         animalsForAdoption {
@@ -75,6 +79,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
                 context: {
                     slug: singularBreed.slug,
                     parentSlug: singularSpecies.slug,
+                    parentSpecies: singularSpecies.speciesType,
                 },
             })
 
@@ -86,6 +91,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
                     context: {
                         slug: singularAnimal.slug,
                         parentSlug: singularBreed.slug,
+                        parentBreed: singularBreed,
                     },
                 })
             })
