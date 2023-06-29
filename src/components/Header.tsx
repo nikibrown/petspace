@@ -34,7 +34,9 @@ const Avatar = styled.div`
 `
 
 const Badge = styled.span`
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     background-color: ${designTokens.colors.brandWarning};
     border-radius: 50%;
@@ -61,7 +63,11 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => {
                     </h1>
                     <Avatar onClick={() => setShowNotifications(false)}>
                         <StaticImage alt="Avatar" src="../images/paw.svg" />
-                        {showNotifications ? <Badge>1</Badge> : null}
+                        {showNotifications ? (
+                            <Badge>
+                                <span>1</span>
+                            </Badge>
+                        ) : null}
                     </Avatar>
                 </FlexRowSpaced>
             </Container>

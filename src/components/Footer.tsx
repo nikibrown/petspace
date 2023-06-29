@@ -80,6 +80,9 @@ const Footer: React.FC<FooterProps> = ({ siteTitle }) => {
                         <FooterEmoji>
                             🐸<ToolTip className="tooltip">ribbit</ToolTip>
                         </FooterEmoji>
+                        <FooterEmoji>
+                            🐦<ToolTip className="tooltip">chirp</ToolTip>
+                        </FooterEmoji>
                     </p>
                 </FlexRowSpaced>
             </Container>

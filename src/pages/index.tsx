@@ -34,7 +34,7 @@ interface ListPageProps {
 }
 
 export const query = graphql`
-    query MyQuery {
+    query {
         allContentfulSpecies(sort: { speciesType: ASC }) {
             nodes {
                 speciesType
@@ -109,10 +109,10 @@ const ListPage: React.FC<ListPageProps> = ({ data }) => {
                     </h2>
 
                     <FlexRowStart>
-                        {speciesData.breeds.map((breedData) => (
+                        {speciesData.breeds?.map((breedData) => (
                             <Card
                                 cardData={breedData}
-                                url={`/${speciesData.slug}/breed/${breedData.slug}`}
+                                url={`/${speciesData.slug}s/${breedData.slug}`}
                                 key={breedData.slug}
                             />
                         ))}

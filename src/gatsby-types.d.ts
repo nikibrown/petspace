@@ -54,7 +54,6 @@ type ContentfulAnimals = ContentfulEntry & ContentfulReference & Node & {
   readonly animalName: Maybe<Scalars['String']>;
   readonly animalPhoto: Maybe<ContentfulAsset>;
   readonly breed: Maybe<ReadonlyArray<Maybe<ContentfulBreed>>>;
-  readonly breedType: Maybe<ContentfulBreed>;
   readonly children: ReadonlyArray<Node>;
   readonly contentful_id: Scalars['String'];
   readonly createdAt: Maybe<Scalars['Date']>;
@@ -64,7 +63,6 @@ type ContentfulAnimals = ContentfulEntry & ContentfulReference & Node & {
   readonly parent: Maybe<Node>;
   readonly slug: Maybe<Scalars['String']>;
   readonly spaceId: Maybe<Scalars['String']>;
-  readonly speciesType: Maybe<ContentfulSpecies>;
   readonly sys: Maybe<ContentfulAnimalsSys>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -152,7 +150,6 @@ type ContentfulAnimalsFieldSelector = {
   readonly animalName: InputMaybe<FieldSelectorEnum>;
   readonly animalPhoto: InputMaybe<ContentfulAssetFieldSelector>;
   readonly breed: InputMaybe<ContentfulBreedFieldSelector>;
-  readonly breedType: InputMaybe<ContentfulBreedFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly contentful_id: InputMaybe<FieldSelectorEnum>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
@@ -162,7 +159,6 @@ type ContentfulAnimalsFieldSelector = {
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly spaceId: InputMaybe<FieldSelectorEnum>;
-  readonly speciesType: InputMaybe<ContentfulSpeciesFieldSelector>;
   readonly sys: InputMaybe<ContentfulAnimalsSysFieldSelector>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -173,7 +169,6 @@ type ContentfulAnimalsFilterInput = {
   readonly animalName: InputMaybe<StringQueryOperatorInput>;
   readonly animalPhoto: InputMaybe<ContentfulAssetFilterInput>;
   readonly breed: InputMaybe<ContentfulBreedFilterListInput>;
-  readonly breedType: InputMaybe<ContentfulBreedFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly contentful_id: InputMaybe<StringQueryOperatorInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
@@ -183,7 +178,6 @@ type ContentfulAnimalsFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly spaceId: InputMaybe<StringQueryOperatorInput>;
-  readonly speciesType: InputMaybe<ContentfulSpeciesFilterInput>;
   readonly sys: InputMaybe<ContentfulAnimalsSysFilterInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -239,7 +233,6 @@ type ContentfulAnimalsSortInput = {
   readonly animalName: InputMaybe<SortOrderEnum>;
   readonly animalPhoto: InputMaybe<ContentfulAssetSortInput>;
   readonly breed: InputMaybe<ContentfulBreedSortInput>;
-  readonly breedType: InputMaybe<ContentfulBreedSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly contentful_id: InputMaybe<SortOrderEnum>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
@@ -249,7 +242,6 @@ type ContentfulAnimalsSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly spaceId: InputMaybe<SortOrderEnum>;
-  readonly speciesType: InputMaybe<ContentfulSpeciesSortInput>;
   readonly sys: InputMaybe<ContentfulAnimalsSysSortInput>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -669,7 +661,6 @@ type ContentfulAssetSysSortInput = {
 };
 
 type ContentfulBreed = ContentfulEntry & ContentfulReference & Node & {
-  readonly animals: Maybe<ReadonlyArray<Maybe<ContentfulAnimals>>>;
   readonly animalsForAdoption: Maybe<ReadonlyArray<Maybe<ContentfulAnimals>>>;
   readonly breedDescription: Maybe<ContentfulBreedBreedDescription>;
   readonly breedFriendliness: Maybe<Scalars['Int']>;
@@ -688,7 +679,7 @@ type ContentfulBreed = ContentfulEntry & ContentfulReference & Node & {
   readonly parent: Maybe<Node>;
   readonly slug: Maybe<Scalars['String']>;
   readonly spaceId: Maybe<Scalars['String']>;
-  readonly species: Maybe<ContentfulSpecies>;
+  readonly species: Maybe<ReadonlyArray<Maybe<ContentfulSpecies>>>;
   readonly sys: Maybe<ContentfulBreedSys>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -787,7 +778,6 @@ type ContentfulBreedEdge = {
 };
 
 type ContentfulBreedFieldSelector = {
-  readonly animals: InputMaybe<ContentfulAnimalsFieldSelector>;
   readonly animalsForAdoption: InputMaybe<ContentfulAnimalsFieldSelector>;
   readonly breedDescription: InputMaybe<ContentfulBreedBreedDescriptionFieldSelector>;
   readonly breedFriendliness: InputMaybe<FieldSelectorEnum>;
@@ -812,7 +802,6 @@ type ContentfulBreedFieldSelector = {
 };
 
 type ContentfulBreedFilterInput = {
-  readonly animals: InputMaybe<ContentfulAnimalsFilterListInput>;
   readonly animalsForAdoption: InputMaybe<ContentfulAnimalsFilterListInput>;
   readonly breedDescription: InputMaybe<ContentfulBreedBreedDescriptionFilterInput>;
   readonly breedFriendliness: InputMaybe<IntQueryOperatorInput>;
@@ -831,7 +820,7 @@ type ContentfulBreedFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly spaceId: InputMaybe<StringQueryOperatorInput>;
-  readonly species: InputMaybe<ContentfulSpeciesFilterInput>;
+  readonly species: InputMaybe<ContentfulSpeciesFilterListInput>;
   readonly sys: InputMaybe<ContentfulBreedSysFilterInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -882,7 +871,6 @@ type ContentfulBreedGroupConnection_sumArgs = {
 };
 
 type ContentfulBreedSortInput = {
-  readonly animals: InputMaybe<ContentfulAnimalsSortInput>;
   readonly animalsForAdoption: InputMaybe<ContentfulAnimalsSortInput>;
   readonly breedDescription: InputMaybe<ContentfulBreedBreedDescriptionSortInput>;
   readonly breedFriendliness: InputMaybe<SortOrderEnum>;
@@ -1257,8 +1245,6 @@ type ContentfulReference = {
 };
 
 type ContentfulSpecies = ContentfulEntry & ContentfulReference & Node & {
-  readonly animals: Maybe<ReadonlyArray<Maybe<ContentfulAnimals>>>;
-  readonly breed: Maybe<ReadonlyArray<Maybe<ContentfulBreed>>>;
   readonly breeds: Maybe<ReadonlyArray<Maybe<ContentfulBreed>>>;
   readonly children: ReadonlyArray<Node>;
   readonly contentful_id: Scalars['String'];
@@ -1336,8 +1322,6 @@ type ContentfulSpeciesEdge = {
 };
 
 type ContentfulSpeciesFieldSelector = {
-  readonly animals: InputMaybe<ContentfulAnimalsFieldSelector>;
-  readonly breed: InputMaybe<ContentfulBreedFieldSelector>;
   readonly breeds: InputMaybe<ContentfulBreedFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly contentful_id: InputMaybe<FieldSelectorEnum>;
@@ -1354,8 +1338,6 @@ type ContentfulSpeciesFieldSelector = {
 };
 
 type ContentfulSpeciesFilterInput = {
-  readonly animals: InputMaybe<ContentfulAnimalsFilterListInput>;
-  readonly breed: InputMaybe<ContentfulBreedFilterListInput>;
   readonly breeds: InputMaybe<ContentfulBreedFilterListInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly contentful_id: InputMaybe<StringQueryOperatorInput>;
@@ -1369,6 +1351,10 @@ type ContentfulSpeciesFilterInput = {
   readonly speciesType: InputMaybe<StringQueryOperatorInput>;
   readonly sys: InputMaybe<ContentfulSpeciesSysFilterInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type ContentfulSpeciesFilterListInput = {
+  readonly elemMatch: InputMaybe<ContentfulSpeciesFilterInput>;
 };
 
 type ContentfulSpeciesGroupConnection = {
@@ -1413,8 +1399,6 @@ type ContentfulSpeciesGroupConnection_sumArgs = {
 };
 
 type ContentfulSpeciesSortInput = {
-  readonly animals: InputMaybe<ContentfulAnimalsSortInput>;
-  readonly breed: InputMaybe<ContentfulBreedSortInput>;
   readonly breeds: InputMaybe<ContentfulBreedSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly contentful_id: InputMaybe<SortOrderEnum>;
@@ -2912,7 +2896,6 @@ type Query_contentfulAnimalsArgs = {
   animalName: InputMaybe<StringQueryOperatorInput>;
   animalPhoto: InputMaybe<ContentfulAssetFilterInput>;
   breed: InputMaybe<ContentfulBreedFilterListInput>;
-  breedType: InputMaybe<ContentfulBreedFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   contentful_id: InputMaybe<StringQueryOperatorInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
@@ -2922,7 +2905,6 @@ type Query_contentfulAnimalsArgs = {
   parent: InputMaybe<NodeFilterInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   spaceId: InputMaybe<StringQueryOperatorInput>;
-  speciesType: InputMaybe<ContentfulSpeciesFilterInput>;
   sys: InputMaybe<ContentfulAnimalsSysFilterInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2958,7 +2940,6 @@ type Query_contentfulAssetArgs = {
 
 
 type Query_contentfulBreedArgs = {
-  animals: InputMaybe<ContentfulAnimalsFilterListInput>;
   animalsForAdoption: InputMaybe<ContentfulAnimalsFilterListInput>;
   breedDescription: InputMaybe<ContentfulBreedBreedDescriptionFilterInput>;
   breedFriendliness: InputMaybe<IntQueryOperatorInput>;
@@ -2977,7 +2958,7 @@ type Query_contentfulBreedArgs = {
   parent: InputMaybe<NodeFilterInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   spaceId: InputMaybe<StringQueryOperatorInput>;
-  species: InputMaybe<ContentfulSpeciesFilterInput>;
+  species: InputMaybe<ContentfulSpeciesFilterListInput>;
   sys: InputMaybe<ContentfulBreedSysFilterInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -3006,8 +2987,6 @@ type Query_contentfulEntryArgs = {
 
 
 type Query_contentfulSpeciesArgs = {
-  animals: InputMaybe<ContentfulAnimalsFilterListInput>;
-  breed: InputMaybe<ContentfulBreedFilterListInput>;
   breeds: InputMaybe<ContentfulBreedFilterListInput>;
   children: InputMaybe<NodeFilterListInput>;
   contentful_id: InputMaybe<StringQueryOperatorInput>;
@@ -4116,15 +4095,10 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
-type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type MyQueryQuery = { readonly allContentfulSpecies: { readonly nodes: ReadonlyArray<{ readonly speciesType: string | null, readonly slug: string | null, readonly id: string, readonly breeds: ReadonlyArray<{ readonly slug: string | null, readonly breedName: string | null, readonly breedSummary: { readonly raw: string | null } | null, readonly breedPhoto: { readonly description: string | null, readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData | null } | null } | null> | null }> } };
-
 type PageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PageQueryQuery = { readonly allContentfulBreed: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly species: { readonly slug: string | null } | null }> }, readonly allContentfulAnimals: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly speciesType: { readonly slug: string | null } | null, readonly breedType: { readonly slug: string | null } | null }> } };
+type PageQueryQuery = { readonly allContentfulSpecies: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly id: string, readonly speciesType: string | null, readonly breeds: ReadonlyArray<{ readonly breedName: string | null, readonly slug: string | null, readonly id: string, readonly animalsForAdoption: ReadonlyArray<{ readonly slug: string | null, readonly id: string } | null> | null } | null> | null }> } };
 
 
 }
