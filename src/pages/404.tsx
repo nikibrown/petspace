@@ -1,5 +1,4 @@
 import * as React from "react"
-import { HeadFC, PageProps } from "gatsby"
 import { Link as TextPageLink } from "gatsby"
 import Layout from "../components/Layout"
 import Section from "../components/utilities/Section"
@@ -14,9 +13,17 @@ const PageLink = styled(TextPageLink)`
     }
 `
 
-export const Head: HeadFC = () => <title>FourOhFour not found! Oh No!</title>
+export const Head = () => (
+    <>
+        <title>404 not found: PetSpace</title>
+        <meta
+            name="description"
+            content="Your place to learn about various pet species and breeds"
+        />
+    </>
+)
 
-const FourOhFour: React.FC<PageProps> = () => {
+const FourOhFour = () => {
     return (
         <Layout>
             <Section>

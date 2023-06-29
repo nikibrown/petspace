@@ -1,50 +1,76 @@
 # Calendly Frontend Engineer Interview Exercise
 
-## 🐱 🐶 🐸 PetSpace
+## 🐱 🐶 🐸 🐦 PetSpace
 
 ```
 🧑‍💻 Niki Brown
 📧 hi@nikibrown.com
 ```
 
-## Install dependencies
+# View site
+
+I've deployed this site to Gatsby Cloud: [https://petspace.gatsbyjs.io/](petspace.gatsbyjs.io)
+
+# Local setup
+
+Clone this repo `git@github.com:nikibrown/petspace.git`
 
 ```bash
 cd ~/location-of-project
 npm install
 ```
 
-## Run the development server:
+# Build and run the project
 
 ```bash
-npm run dev
+npm run build && npm run serve
 ```
 
-Site should run locally at [http://localhost:8000](http://localhost:8000)
+This builds and serves the site at [http://localhost:9000](http://localhost:9000)
 
-1.  **Design file / wireframe**
+# Process
+
+## Design file / wireframe
 
 First step after reading the exercise description was to quickly generate a high-fidelity wireframe 🎨
-[View Figma File](https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=1%3A2&mode=design&t=TtCf1lqRhzqHMvId-1)
 
-2. \*\* Create Content Model in Contentful
+-   <a href="https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=1%3A2&mode=design&t=TtCf1lqRhzqHMvId-1" target="_blank">Figma list page wireframe</a>
+-   <a href="https://www.figma.com/file/VBTEyz2KlkpuLCz5GX38Ly/PetSpace?type=design&node-id=0-1&mode=design" target="_blank">Figma breed page wireframe</a>
 
-Keeping scaling in mind I created three content types in relation to the initial information offered.
+## Content Model in Contentful
 
--   Species - since this will scale beyond dog breeds. Species currently include cats, dogs and reptiles.
--   Breeds - Breeds are a subset of species.
--   Individual Animals - These are individual animals that are available for adoption.
+With scaling in mind I created three content types
 
-When adding new animals and breeds, I created reference fields to help aid with URL creation and querying related content.
+-   **Species**: since this will scale beyond dog breeds. Species currently include cats, dogs and reptiles and birds.
+-   **Breeds**: Breeds are a subset of species.
+-   **Individual Animals**: Animals are a subset of breeds
 
--   Species reference Breeds
--   Breeds reference individual animals
+-   When adding new animals and breeds, I created reference fields to associate content for list pages as well as to provide page context for URL creation with the structure of `/{species}/{breed}/{individual-animal}`
 
-3. **Development**
+    -   Species reference Breeds
+    -   Breeds reference individual animals
 
--   Used the Gatsby CLI to create a site and set things up with Contentful, Styled Components, Typescript
--   Still working through some typescript errors
+-   I also added help text to most fields to explain the purpose and aid in usability for content creators. Surprisingly this help text is lacking in other headless CMS solutions I have used (Prismic)
 
-4. **🚀 Deploy**
+## Development
 
--   Deployed to Gatsby Cloud: [https://petspace.gatsbyjs.io/](petspace.gatsbyjs.io)
+-   Set up `designTokens` for use with styled components to enable consistent and reusable brand colors, spacing, type sizes and typefaces
+-   Set up reusable utility components for layout: `<Container>`, `<FlexRow>`, `<Section>` with variations for layouts etc.
+-   Moved reusable chunks of code to components for future scalability
+-   For content scalability, I used Gatsby `createPages` function to dynamically generate pages. The Gatsby File System Route API allows for dynamic slug naming for individual content would not work with the URL structure `/{species}/{breed}/{individual-animal}` I had in mind.
+
+## Issues
+
+-   I ran into some issues initially with my reference fields creating circular dependencies causing build errors. I updated the fields to only have references from parent => children content.
+-   I also decided to rename some contentful fields to make things less confusing. There are still a few fields that have confusing API names.
+-   There are still a few TypeScript warnings when I run the typecheck. I'm admittedly a bit newer to TypeScript but actively working on learning more.
+
+## Further Development
+
+-   Overall this was a fun exercise that helped me refresh my knowledge of Contentful, Gatsby and TypeScript.
+-   If allowed more time I would flesh out the design more. I initially spend 10 minutes making a high-ish fidelity wireframe.
+-   With more time I would obviously fix TypeScript errors and probably spend more time working on the content model before developing.
+-   I Would also take another look at how pages are generated in `gatsby-node.ts` I know having nested `forEach` loops might cause a performance issue. This is the only way I could think of generating the pages while providing `pageContext` to help generate the URL structure of: `/{species}/{breed}/{individual-animal}`
+-   I would consider adding an image slider to the single breed and single animal pages.
+-   I would also consider adding pagination to the list view page.
+-   SEO: I would add individual fields for SEO metadata to the content model. For the sake of time, I generated titles and meta descriptions from the content model to keep things simple. I would also add OpenGraph data so pages could be shared on social networks.
