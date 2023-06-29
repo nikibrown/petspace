@@ -1,32 +1,27 @@
 import path from "path"
-import { GatsbyNode } from "gatsby"
+import { GatsbyNode, Actions, CreatePagesArgs } from "gatsby"
 
-interface ContentfulBreed {
+interface AnimalForAdoption {
     slug: string
-    species?: {
-        slug: string
-    }
+    id: string
 }
 
-interface ContentfulAnimal {
+interface Breed {
     slug: string
-    speciesType?: {
-        slug: string
-    }
-    breedType?: {
-        slug: string
-    }
+    id: string
+    animalsForAdoption: AnimalForAdoption[]
+}
+
+interface Node {
+    slug: string
+    id: string
+    breeds: Breed[]
 }
 
 interface QueryResult {
     errors?: any[]
-    data: {
-        allContentfulBreed?: {
-            nodes: ContentfulBreed[]
-        }
-        allContentfulAnimals?: {
-            nodes: ContentfulAnimal[]
-        }
+    allContentfulSpecies: {
+        nodes: Node[]
     }
 }
 
@@ -34,31 +29,22 @@ export const createPages: GatsbyNode["createPages"] = async ({
     graphql,
     actions,
     reporter,
-}) => {
-    const { createPage } = actions
-
-    // Define a template for blog post
-    const singleBreed = path.resolve("./src/templates/single-breed.tsx")
-    const singleAnimal = path.resolve("./src/templates/single-animal.tsx")
+}: CreatePagesArgs) => {
+    const { createPage } = actions as Actions
 
     const result = await graphql<QueryResult>(`
         query PageQuery {
-            allContentfulBreed {
+            allContentfulSpecies {
                 nodes {
                     slug
-                    species {
+                    id
+                    breeds {
                         slug
-                    }
-                }
-            }
-            allContentfulAnimals {
-                nodes {
-                    slug
-                    speciesType {
-                        slug
-                    }
-                    breedType {
-                        slug
+                        id
+                        animalsForAdoption {
+                            slug
+                            id
+                        }
                     }
                 }
             }
@@ -73,32 +59,36 @@ export const createPages: GatsbyNode["createPages"] = async ({
         return
     }
 
-    const breeds = result?.data?.allContentfulBreed?.nodes
-    const animals = result?.data?.allContentfulAnimals?.nodes
+    const queryResult = result.data.allContentfulSpecies.nodes || []
 
-    // Create single breed detail pages
-    // But only if there's at least one breed page found in Contentful
-    // `context` is available in the template as a prop and as a variable in GraphQL
+    const singleBreed = path.resolve("./src/templates/single-breed.tsx")
+    const singleAnimal = path.resolve("./src/templates/single-animal.tsx")
 
-    breeds?.forEach((breed) => {
-        createPage({
-            path: `/${breed?.species?.slug}/breed/${breed.slug}/`,
-            component: singleBreed,
-            context: {
-                slug: breed.slug,
-                id: breed.id,
-            },
-        })
-    })
+    // loop through data rsults so we can use createPage to make paths and associate with components
+    // loop through each species so have have access to the slub
+    queryResult.forEach((singularSpecies) => {
+        // loop through breeds for each species so we have access to breeds slug
+        singularSpecies.breeds?.forEach((singularBreed) => {
+            createPage({
+                path: `/${singularSpecies.slug}s/${singularBreed.slug}/`,
+                component: singleBreed,
+                context: {
+                    slug: singularBreed.slug,
+                    parentSlug: singularSpecies.slug,
+                },
+            })
 
-    animals?.forEach((animal) => {
-        createPage({
-            path: `/${animal?.speciesType?.slug}/breed/${animal?.breedType?.slug}/${animal.slug}/`,
-            component: singleAnimal,
-            context: {
-                slug: animal.slug,
-                id: animal.id,
-            },
+            // loop through each animal for each breed so we have access to animal slug
+            singularBreed.animalsForAdoption?.forEach((singularAnimal) => {
+                createPage({
+                    path: `/${singularSpecies.slug}s/${singularBreed.slug}/${singularAnimal.slug}`,
+                    component: singleAnimal,
+                    context: {
+                        slug: singularAnimal.slug,
+                        parentSlug: singularBreed.slug,
+                    },
+                })
+            })
         })
     })
 }
