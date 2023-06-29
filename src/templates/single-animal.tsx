@@ -21,15 +21,14 @@ interface AnimalSinglePageProps {
                 raw: string
             }
             adoptionLink: string
-            speciesType: {
-                slug: string
-                speciesType: string
-            }
-            breedType: {
-                slug: string
-                breedName: string
-            }
         }
+    }
+    pageContext: {
+        slug: string
+        parentBreedSlug: string
+        parentBreed: string
+        parentSpecies: string
+        parentSpeciesSlug: string
     }
 }
 
@@ -45,14 +44,6 @@ export const query = graphql`
                 raw
             }
             adoptionLink
-            speciesType {
-                slug
-                speciesType
-            }
-            breedType {
-                slug
-                breedName
-            }
         }
     }
 `
@@ -67,31 +58,32 @@ const PageLink = styled(TextPageLink)`
 const ImageContainer = styled.div`
     margin-bottom: ${designTokens.spacing.small};
 `
-export const Head: HeadFC = ({ data }) => (
+export const Head: HeadFC = ({ data, pageContext }) => (
     <>
         <title>
-            {data.contentfulAnimals.speciesType.speciesType}s -{" "}
-            {data.contentfulAnimals.breedType.breedName} -{" "}
+            {pageContext.parentSpecies}s - {pageContext.parentBreed} -{" "}
             {data.contentfulAnimals.animalName}
         </title>
         <meta
             name="description"
-            content={`Your place to learn about ${data.contentfulAnimals.animalName}, the ${data.contentfulAnimals.breedType.breedName} ${data.contentfulAnimals.speciesType.speciesType}`}
+            content={`Your place to learn about ${data.contentfulAnimals.animalName}, the ${pageContext.parentBreed} ${pageContext.parentSpecies}`}
         />
     </>
 )
 
-const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({ data }) => {
+const AnimalSinglePage: React.FC<AnimalSinglePageProps> = ({
+    data,
+    pageContext,
+}) => {
     return (
         <Layout>
             <Section>
                 <p>
                     <PageLink
-                        to={`/${data.contentfulAnimals.speciesType.slug}/breed/${data.contentfulAnimals.breedType.slug}`}
+                        to={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
                     >
-                        &larr; Back to{" "}
-                        {data.contentfulAnimals.breedType.breedName}{" "}
-                        {data.contentfulAnimals.speciesType.speciesType}s
+                        &larr; Back to {pageContext.parentBreed}{" "}
+                        {pageContext.parentSpecies}s
                     </PageLink>
                 </p>
 

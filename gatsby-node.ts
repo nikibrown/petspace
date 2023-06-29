@@ -90,8 +90,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
                     component: singleAnimal,
                     context: {
                         slug: singularAnimal.slug,
-                        parentSlug: singularBreed.slug,
-                        parentBreed: singularBreed,
+                        parentBreedSlug: singularBreed.slug,
+                        parentBreed: singularBreed.breedName,
+                        parentSpecies: singularSpecies.speciesType,
+                        parentSpeciesSlug: singularSpecies.slug,
                     },
                 })
             })
