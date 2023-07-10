@@ -1,7 +1,8 @@
 import * as React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
+
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import type { PageProps } from "gatsby"
 import { graphql } from "gatsby"
 
 // components
@@ -12,14 +13,38 @@ import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 import Stats from "../components/Stats"
 
-// types
-import type { SingleBreed } from "../types/types"
-
 // styles
 import styled from "styled-components"
 
-type GraphQLResult = {
-    contentfulBreed: SingleBreed
+interface SingleBreedProps {
+    data: {
+        contentfulBreed: {
+            id: string
+            slug: string
+            breedFriendliness: number
+            breedDescription: {
+                raw: string
+            }
+            breedLifeExpectancyMax: number
+            breedLifeExpectancyMin: number
+            breedName: string
+            species: {
+                speciesType: string
+            }
+            breedPhoto?: {
+                gatsbyImageData: IGatsbyImageData
+            }
+            breedShedding: number
+            animalsForAdoption?: {
+                id: string
+                slug: string
+                animalName: string
+                animalPhoto: {
+                    gatsbyImageData: IGatsbyImageData
+                }
+            }[]
+        }
+    }
     pageContext: {
         slug: string
         parentSlug: string
@@ -27,7 +52,7 @@ type GraphQLResult = {
     }
 }
 
-export const Head = ({ data, pageContext }) => (
+export const Head = ({ data, pageContext }: SingleBreedProps) => (
     <>
         <title>
             {pageContext.parentSpecies}s - {data.contentfulBreed.breedName}
@@ -39,7 +64,7 @@ export const Head = ({ data, pageContext }) => (
     </>
 )
 
-const BreedSinglePage = ({ data, pageContext }: PageProps<GraphQLResult>) => {
+const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
     // object to pass to <Stats> component
     const statData = {
         breedLifeExpectancyMin: data.contentfulBreed.breedLifeExpectancyMin,

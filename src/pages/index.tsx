@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import type { PageProps } from "gatsby"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 // components
 import Card from "../components/Card"
@@ -10,15 +10,37 @@ import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 
 // types
-import type { Species } from "../types/types"
+// import type { Species } from "../types/types"
 
 // styles
 import styled from "styled-components"
 import { designTokens } from "../components/designTokens"
 
-type GraphQLResult = {
-    allContentfulSpecies: {
-        nodes: Species[]
+// type GraphQLResult = {
+//     allContentfulSpecies: {
+//         nodes: Species[]
+//     }
+// }
+
+interface LiistPageProps {
+    data: {
+        allContentfulSpecies: {
+            nodes: {
+                speciesType: string
+                slug: string
+                id: string
+                breeds: {
+                    slug: string
+                    breedName: string
+                    breedSummary: {
+                        raw: string
+                    }
+                    breedPhoto: {
+                        gatsbyImageData: IGatsbyImageData
+                    }
+                }[]
+            }[]
+        }
     }
 }
 
@@ -32,7 +54,7 @@ export const Head = () => (
     </>
 )
 
-const ListPage = ({ data }: PageProps<GraphQLResult>) => {
+const ListPage = ({ data }: LiistPageProps) => {
     return (
         <Layout>
             <Section>
