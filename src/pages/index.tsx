@@ -1,12 +1,12 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { Link as TextPageLink } from "gatsby"
 import type { PageProps } from "gatsby"
 
 // components
 import Card from "../components/Card"
 import { FlexRowStart } from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
+import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 
 // types
@@ -45,7 +45,7 @@ const ListPage = ({ data }: PageProps<GraphQLResult>) => {
                     <SpeciesListItem>Jump to: </SpeciesListItem>
                     {data.allContentfulSpecies.nodes.map((speciesData) => (
                         <SpeciesListItem key={speciesData.id}>
-                            <PageLink to={`/#${speciesData.slug}s`}>
+                            <PageLink url={`/#${speciesData.slug}s`}>
                                 {speciesData.speciesType}s
                             </PageLink>
                         </SpeciesListItem>
@@ -111,12 +111,4 @@ const SpeciesList = styled.ul`
 const SpeciesListItem = styled.li`
     display: inline;
     margin-right: 20px;
-`
-
-const PageLink = styled(TextPageLink)`
-    color: ${designTokens.colors.brandPrimary};
-    text-decoration: none;
-    &:hover {
-        text-decoraton: underline;
-    }
 `

@@ -8,6 +8,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 // components
 import ButtonCTA from "../components/ButtonCTA"
 import Layout from "../components/Layout"
+import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 
 // types
@@ -47,7 +48,7 @@ const AnimalSinglePage = ({ data, pageContext }: PageProps<GraphQLResult>) => {
             <Section>
                 <p>
                     <PageLink
-                        to={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
+                        url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
                     >
                         &larr; Back to {pageContext.parentBreed}{" "}
                         {pageContext.parentSpecies}s
@@ -94,14 +95,6 @@ export const query = graphql`
             }
             adoptionLink
         }
-    }
-`
-
-const PageLink = styled(TextPageLink)`
-    color: ${designTokens.colors.brandPrimary};
-    text-decoration: none;
-    &:hover {
-        text-decoraton: underline;
     }
 `
 

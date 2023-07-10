@@ -1,6 +1,5 @@
 import * as React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Link as TextPageLink } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import type { PageProps } from "gatsby"
 import { graphql } from "gatsby"
@@ -9,6 +8,7 @@ import { graphql } from "gatsby"
 import Card from "../components/Card"
 import FlexRow from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
+import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 import Stats from "../components/Stats"
 
@@ -17,7 +17,6 @@ import type { SingleBreed } from "../types/types"
 
 // styles
 import styled from "styled-components"
-import { designTokens } from "../components/designTokens"
 
 type GraphQLResult = {
     contentfulBreed: SingleBreed
@@ -53,7 +52,7 @@ const BreedSinglePage = ({ data, pageContext }: PageProps<GraphQLResult>) => {
         <Layout>
             <Section>
                 <p>
-                    <PageLink to={`/`}>&larr; Back to Species List</PageLink>
+                    <PageLink url={`/`}>&larr; Back to Species List</PageLink>
                 </p>
 
                 <h1>
@@ -133,14 +132,6 @@ export const query = graphql`
                 }
             }
         }
-    }
-`
-
-const PageLink = styled(TextPageLink)`
-    color: ${designTokens.colors.brandPrimary};
-    text-decoration: none;
-    &:hover {
-        text-decoraton: underline;
     }
 `
 
