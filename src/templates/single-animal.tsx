@@ -1,7 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { Link as TextPageLink } from "gatsby"
-import type { PageProps } from "gatsby"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
@@ -11,15 +10,24 @@ import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 
-// types
-import type { SingleAnimal } from "../types/types"
-
 // styles
 import styled from "styled-components"
 import { designTokens } from "../components/designTokens"
 
-type GraphQLResult = {
-    contentfulAnimals: SingleAnimal
+interface SingleAnimalProps {
+    data: {
+        contentfulAnimals: {
+            id: string
+            animalName: string
+            animalPhoto: {
+                gatsbyImageData: IGatsbyImageData
+            }
+            animalDescription: {
+                raw: string
+            }
+            adoptionLink: string
+        }
+    }
     pageContext: {
         slug: string
         parentBreedSlug: string
@@ -29,7 +37,7 @@ type GraphQLResult = {
     }
 }
 
-export const Head = ({ data, pageContext }) => (
+export const Head = ({ data, pageContext }: SingleAnimalProps) => (
     <>
         <title>
             {pageContext.parentSpecies}s - {pageContext.parentBreed} -{" "}
@@ -42,10 +50,11 @@ export const Head = ({ data, pageContext }) => (
     </>
 )
 
-const AnimalSinglePage = ({ data, pageContext }: PageProps<GraphQLResult>) => {
+const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
     return (
         <Layout>
             <Section>
+                <h1>Hellllooooo</h1>
                 <p>
                     <PageLink
                         url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
