@@ -32,8 +32,6 @@ interface SingleBreedProps {
                 speciesType: string
             }
             breedPhoto?: {
-                alt: string
-                id: string
                 gatsbyImageData: IGatsbyImageData
             }
             breedShedding: number
@@ -41,10 +39,7 @@ interface SingleBreedProps {
                 id: string
                 slug: string
                 animalName: string
-
                 animalPhoto: {
-                    alt: string
-                    id: string
                     gatsbyImageData: IGatsbyImageData
                 }
             }[]
@@ -103,9 +98,7 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
             <Section>
                 <FlexRow>
                     <TextColumn>
-                        {renderRichText(
-                            data.contentfulBreed.breedDescription.raw
-                        )}
+                        {renderRichText(data.contentfulBreed.breedDescription)}
                     </TextColumn>
                     <Stats statData={statData} />
                 </FlexRow>
@@ -146,8 +139,6 @@ export const query = graphql`
             breedName
             breedPhoto {
                 gatsbyImageData(layout: FULL_WIDTH)
-                id
-                gatsbyImageData
             }
             breedShedding
 
@@ -163,8 +154,6 @@ export const query = graphql`
                 slug
                 animalPhoto {
                     gatsbyImageData(layout: FULL_WIDTH)
-                    id
-                    gatsbyImageData
                 }
             }
         }
