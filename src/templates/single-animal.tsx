@@ -1,7 +1,11 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import {
+    renderRichText,
+    RenderRichTextData,
+    ContentfulRichTextGatsbyReference,
+} from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // components
@@ -22,9 +26,7 @@ interface SingleAnimalProps {
             animalPhoto: {
                 gatsbyImageData: IGatsbyImageData
             }
-            animalDescription: {
-                raw: string
-            }
+            animalDescription: RenderRichTextData<ContentfulRichTextGatsbyReference>
             adoptionLink: string
         }
     }
@@ -54,7 +56,6 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
     return (
         <Layout>
             <Section>
-                <h1>Hellllooooo</h1>
                 <p>
                     <PageLink
                         url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
@@ -69,7 +70,10 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
                 {data.contentfulAnimals.animalPhoto && (
                     <ImageContainer>
                         <GatsbyImage
-                            image={getImage(data.contentfulAnimals.animalPhoto)}
+                            image={getImage(
+                                data.contentfulAnimals.animalPhoto
+                                    .gatsbyImageData
+                            )}
                             alt={data.contentfulAnimals.animalName}
                         />
                     </ImageContainer>
@@ -97,7 +101,7 @@ export const query = graphql`
             id
             animalName
             animalPhoto {
-                gatsbyImageData(layout: FULL_WIDTH)
+                gatsbyImageData
             }
             animalDescription {
                 raw
