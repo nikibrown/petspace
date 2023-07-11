@@ -2,7 +2,11 @@ import * as React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
 
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import {
+    renderRichText,
+    RenderRichTextData,
+    ContentfulRichTextGatsbyReference,
+} from "gatsby-source-contentful/rich-text"
 import { graphql } from "gatsby"
 
 // components
@@ -22,9 +26,7 @@ interface SingleBreedProps {
             id: string
             slug: string
             breedFriendliness: number
-            breedDescription: {
-                raw: string
-            }
+            breedDescription: RenderRichTextData<ContentfulRichTextGatsbyReference>
             breedLifeExpectancyMax: number
             breedLifeExpectancyMin: number
             breedName: string
@@ -89,7 +91,9 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
             <Section>
                 {data.contentfulBreed.breedPhoto && (
                     <GatsbyImage
-                        image={getImage(data.contentfulBreed.breedPhoto)}
+                        image={getImage(
+                            data.contentfulBreed.breedPhoto.gatsbyImageData
+                        )}
                         alt={data.contentfulBreed.breedName}
                     />
                 )}

@@ -9,18 +9,9 @@ import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
 import Section from "../components/utilities/Section"
 
-// types
-// import type { Species } from "../types/types"
-
 // styles
 import styled from "styled-components"
 import { designTokens } from "../components/designTokens"
-
-// type GraphQLResult = {
-//     allContentfulSpecies: {
-//         nodes: Species[]
-//     }
-// }
 
 interface LiistPageProps {
     data: {

@@ -1,7 +1,11 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import {
+    renderRichText,
+    RenderRichTextData,
+    ContentfulRichTextGatsbyReference,
+} from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // components
@@ -22,9 +26,7 @@ interface SingleAnimalProps {
             animalPhoto: {
                 gatsbyImageData: IGatsbyImageData
             }
-            animalDescription: {
-                raw: string
-            }
+            animalDescription: RenderRichTextData<ContentfulRichTextGatsbyReference>
             adoptionLink: string
         }
     }
