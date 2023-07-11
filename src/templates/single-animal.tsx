@@ -56,7 +56,6 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
     return (
         <Layout>
             <Section>
-                <h1>Hellllooooo</h1>
                 <p>
                     <PageLink
                         url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
@@ -71,7 +70,10 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
                 {data.contentfulAnimals.animalPhoto && (
                     <ImageContainer>
                         <GatsbyImage
-                            image={getImage(data.contentfulAnimals.animalPhoto)}
+                            image={getImage(
+                                data.contentfulAnimals.animalPhoto
+                                    .gatsbyImageData
+                            )}
                             alt={data.contentfulAnimals.animalName}
                         />
                     </ImageContainer>
@@ -99,7 +101,7 @@ export const query = graphql`
             id
             animalName
             animalPhoto {
-                gatsbyImageData(layout: FULL_WIDTH)
+                gatsbyImageData
             }
             animalDescription {
                 raw
