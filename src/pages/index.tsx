@@ -4,16 +4,17 @@ import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 // components
 import Card from "../components/Card"
-import { FlexRowStart } from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
+// import Section from "../components/utilities/Section"
 
 // styles
 import styled from "styled-components"
 import { designTokens } from "../components/designTokens"
 
-interface LiistPageProps {
+import { Section, Container, Flex } from "../components/ui"
+
+interface ListPageProps {
     data: {
         allContentfulSpecies: {
             nodes: {
@@ -45,42 +46,47 @@ export const Head = () => (
     </>
 )
 
-const ListPage = ({ data }: LiistPageProps) => {
+const ListPage = ({ data }: ListPageProps) => {
     return (
         <Layout>
             <Section>
-                <Intro>
-                    Welcome to PetSpace, your social network for pets. Here you
-                    can learn about pet species, breeds and adoptable pets.
-                </Intro>
+                <Container>
+                    <Intro>
+                        Welcome to PetSpace, your social network for pets. Here
+                        you can learn about pet species, breeds and adoptable
+                        pets.
+                    </Intro>
 
-                <SpeciesList>
-                    <SpeciesListItem>Jump to: </SpeciesListItem>
-                    {data.allContentfulSpecies.nodes.map((speciesData) => (
-                        <SpeciesListItem key={speciesData.id}>
-                            <PageLink url={`/#${speciesData.slug}s`}>
-                                {speciesData.speciesType}s
-                            </PageLink>
-                        </SpeciesListItem>
-                    ))}
-                </SpeciesList>
+                    <SpeciesList>
+                        <SpeciesListItem>Jump to: </SpeciesListItem>
+                        {data.allContentfulSpecies.nodes.map((speciesData) => (
+                            <SpeciesListItem key={speciesData.id}>
+                                <PageLink url={`/#${speciesData.slug}s`}>
+                                    {speciesData.speciesType}s
+                                </PageLink>
+                            </SpeciesListItem>
+                        ))}
+                    </SpeciesList>
+                </Container>
             </Section>
 
             {data.allContentfulSpecies.nodes.map((speciesData) => (
                 <Section key={speciesData.slug}>
-                    <h2 id={`${speciesData.slug}s`}>
-                        {speciesData.speciesType} Breeds:{" "}
-                    </h2>
+                    <Container>
+                        <h2 id={`${speciesData.slug}s`}>
+                            {speciesData.speciesType} Breeds:{" "}
+                        </h2>
 
-                    <FlexRowStart>
-                        {speciesData.breeds?.map((breedData) => (
-                            <Card
-                                cardData={breedData}
-                                url={`/${speciesData.slug}s/${breedData.slug}`}
-                                key={breedData.slug}
-                            />
-                        ))}
-                    </FlexRowStart>
+                        <Flex variant="justifyFlexStart">
+                            {speciesData.breeds?.map((breedData) => (
+                                <Card
+                                    cardData={breedData}
+                                    url={`/${speciesData.slug}s/${breedData.slug}`}
+                                    key={breedData.slug}
+                                />
+                            ))}
+                        </Flex>
+                    </Container>
                 </Section>
             ))}
         </Layout>

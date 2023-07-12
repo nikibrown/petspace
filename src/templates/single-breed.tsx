@@ -11,10 +11,9 @@ import { graphql } from "gatsby"
 
 // components
 import Card from "../components/Card"
-import FlexRow from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
+import { Section, Container, Flex } from "../components/ui"
 import Stats from "../components/Stats"
 
 // styles
@@ -78,56 +77,68 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
     return (
         <Layout>
             <Section>
-                <p>
-                    <PageLink url={`/`}>&larr; Back to Species List</PageLink>
-                </p>
+                <Container>
+                    <p>
+                        <PageLink url={`/`}>
+                            &larr; Back to Species List
+                        </PageLink>
+                    </p>
 
-                <h1>
-                    {pageContext.parentSpecies}:{" "}
-                    {data.contentfulBreed.breedName}
-                </h1>
+                    <h1>
+                        {pageContext.parentSpecies}:{" "}
+                        {data.contentfulBreed.breedName}
+                    </h1>
+                </Container>
             </Section>
 
             <Section>
-                {data.contentfulBreed.breedPhoto && (
-                    <GatsbyImage
-                        image={getImage(
-                            data.contentfulBreed.breedPhoto.gatsbyImageData
-                        )}
-                        alt={data.contentfulBreed.breedName}
-                    />
-                )}
-            </Section>
-
-            <Section>
-                <FlexRow>
-                    <TextColumn>
-                        {renderRichText(data.contentfulBreed.breedDescription)}
-                    </TextColumn>
-                    <Stats statData={statData} />
-                </FlexRow>
-            </Section>
-
-            <Section>
-                {data.contentfulBreed.animalsForAdoption && (
-                    <div className="animals-for-adoption">
-                        <h2>
-                            Adopt a {data.contentfulBreed.breedName}{" "}
-                            {pageContext.parentSpecies} today!
-                        </h2>
-                        <FlexRow>
-                            {data.contentfulBreed.animalsForAdoption.map(
-                                (animalData) => (
-                                    <Card
-                                        cardData={animalData}
-                                        url={`/${pageContext.parentSlug}s/${data.contentfulBreed.slug}/${animalData.slug}`}
-                                        key={animalData.slug}
-                                    />
-                                )
+                <Container>
+                    {data.contentfulBreed.breedPhoto && (
+                        <GatsbyImage
+                            image={getImage(
+                                data.contentfulBreed.breedPhoto.gatsbyImageData
                             )}
-                        </FlexRow>
-                    </div>
-                )}
+                            alt={data.contentfulBreed.breedName}
+                        />
+                    )}
+                </Container>
+            </Section>
+
+            <Section>
+                <Container>
+                    <Flex>
+                        <TextColumn>
+                            {renderRichText(
+                                data.contentfulBreed.breedDescription
+                            )}
+                        </TextColumn>
+                        <Stats statData={statData} />
+                    </Flex>
+                </Container>
+            </Section>
+
+            <Section>
+                <Container>
+                    {data.contentfulBreed.animalsForAdoption && (
+                        <div className="animals-for-adoption">
+                            <h2>
+                                Adopt a {data.contentfulBreed.breedName}{" "}
+                                {pageContext.parentSpecies} today!
+                            </h2>
+                            <Flex>
+                                {data.contentfulBreed.animalsForAdoption.map(
+                                    (animalData) => (
+                                        <Card
+                                            cardData={animalData}
+                                            url={`/${pageContext.parentSlug}s/${data.contentfulBreed.slug}/${animalData.slug}`}
+                                            key={animalData.slug}
+                                        />
+                                    )
+                                )}
+                            </Flex>
+                        </div>
+                    )}
+                </Container>
             </Section>
         </Layout>
     )

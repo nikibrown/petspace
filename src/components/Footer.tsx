@@ -1,7 +1,6 @@
 import * as React from "react"
-import Container from "./utilities/Container"
+import { Container, Flex } from "./ui"
 import { designTokens } from "./designTokens"
-import { FlexRowSpaced } from "./utilities/FlexRow"
 import styled from "styled-components"
 
 interface FooterProps {
@@ -65,7 +64,7 @@ const Footer = ({ siteTitle }: FooterProps) => {
     return (
         <FooterWrapper>
             <Container>
-                <FlexRowSpaced>
+                <Flex variant="justifySpaceBetween">
                     <p>&copy; {siteTitle} 2023</p>
                     <p>
                         <FooterEmoji>
@@ -81,7 +80,7 @@ const Footer = ({ siteTitle }: FooterProps) => {
                             🐦<ToolTip className="tooltip">chirp</ToolTip>
                         </FooterEmoji>
                     </p>
-                </FlexRowSpaced>
+                </Flex>
             </Container>
         </FooterWrapper>
     )

@@ -9,10 +9,9 @@ import {
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // components
-import ButtonCTA from "../components/ButtonCTA"
+import { ButtonCTA, Section, Container } from "../components/ui"
 import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
 
 // styles
 import styled from "styled-components"
@@ -56,38 +55,45 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
     return (
         <Layout>
             <Section>
-                <p>
-                    <PageLink
-                        url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
-                    >
-                        &larr; Back to {pageContext.parentBreed}{" "}
-                        {pageContext.parentSpecies}s
-                    </PageLink>
-                </p>
+                <Container>
+                    <p>
+                        <PageLink
+                            url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
+                        >
+                            &larr; Back to {pageContext.parentBreed}{" "}
+                            {pageContext.parentSpecies}s
+                        </PageLink>
+                    </p>
 
-                <h1>{data.contentfulAnimals.animalName}</h1>
+                    <h1>{data.contentfulAnimals.animalName}</h1>
 
-                {data.contentfulAnimals.animalPhoto && (
-                    <ImageContainer>
-                        <GatsbyImage
-                            image={getImage(
-                                data.contentfulAnimals.animalPhoto
-                                    .gatsbyImageData
-                            )}
-                            alt={data.contentfulAnimals.animalName}
-                        />
-                    </ImageContainer>
-                )}
+                    {data.contentfulAnimals.animalPhoto && (
+                        <ImageContainer>
+                            <GatsbyImage
+                                image={getImage(
+                                    data.contentfulAnimals.animalPhoto
+                                        .gatsbyImageData
+                                )}
+                                alt={data.contentfulAnimals.animalName}
+                            />
+                        </ImageContainer>
+                    )}
 
-                <div className="desc">
-                    {renderRichText(data.contentfulAnimals.animalDescription)}
-                </div>
+                    <div className="desc">
+                        {renderRichText(
+                            data.contentfulAnimals.animalDescription
+                        )}
+                    </div>
 
-                {data.contentfulAnimals.adoptionLink && (
-                    <ButtonCTA url={data.contentfulAnimals.adoptionLink}>
-                        Adopt {data.contentfulAnimals.animalName} &rarr;
-                    </ButtonCTA>
-                )}
+                    {data.contentfulAnimals.adoptionLink && (
+                        <ButtonCTA
+                            variant="primary"
+                            to={data.contentfulAnimals.adoptionLink}
+                        >
+                            Adopt {data.contentfulAnimals.animalName} &rarr;
+                        </ButtonCTA>
+                    )}
+                </Container>
             </Section>
         </Layout>
     )

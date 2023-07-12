@@ -1,5 +1,5 @@
 import * as React from "react"
-import ButtonCTA from "./ButtonCTA"
+import { ButtonCTA } from "./ui"
 import { designTokens } from "./designTokens"
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image"
 import { Link as CardLink } from "gatsby"
@@ -75,7 +75,9 @@ const Card = ({ cardData, url }: CardProps) => {
                 </h3>
                 {cardText && renderRichText(cardText)}
 
-                <ButtonCTA url={url}>Learn More &rarr;</ButtonCTA>
+                <ButtonCTA variant="primary" to={url}>
+                    Learn More &rarr;
+                </ButtonCTA>
             </CardBody>
         </CardWrapper>
     )

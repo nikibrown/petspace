@@ -1,7 +1,7 @@
 import * as React from "react"
 import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
+import { Section, Container } from "../components/ui"
 
 export const Head = () => (
     <>
@@ -17,12 +17,14 @@ const FourOhFour = () => {
     return (
         <Layout>
             <Section>
-                <h1>404: Not Found</h1>
-                <h1>🐱 🐶 🐸 🐦</h1>
-                <p>
-                    Try going back to the{" "}
-                    <PageLink url={`/`}>homepage</PageLink>
-                </p>
+                <Container>
+                    <h1>404: Not Found</h1>
+                    <h1>🐱 🐶 🐸 🐦</h1>
+                    <p>
+                        Try going back to the{" "}
+                        <PageLink url={`/`}>homepage</PageLink>
+                    </p>
+                </Container>
             </Section>
         </Layout>
     )
