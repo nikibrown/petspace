@@ -1,4 +1,6 @@
 import * as React from "react"
+
+// components & ui
 import BarGraph from "./BarGraph"
 import { designTokens } from "./designTokens"
 import RatingStars from "./RatingStars"
