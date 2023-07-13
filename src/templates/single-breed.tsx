@@ -1,7 +1,6 @@
 import * as React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
-
 import {
     renderRichText,
     RenderRichTextData,
@@ -9,12 +8,19 @@ import {
 } from "gatsby-source-contentful/rich-text"
 import { graphql } from "gatsby"
 
-// components
+// components & ui
 import Card from "../components/Card"
 import Layout from "../components/Layout"
-import PageLink from "../components/PageLink"
-import { Section, Container, FlexContainer } from "../components/ui"
 import Stats from "../components/Stats"
+import {
+    Section,
+    Container,
+    FlexContainer,
+    Heading,
+    PageLink,
+    Text,
+    Column,
+} from "../components/ui"
 
 // styles
 import styled from "styled-components"
@@ -78,16 +84,16 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
         <Layout>
             <Section>
                 <Container>
-                    <p>
-                        <PageLink url={`/`}>
+                    <Text>
+                        <PageLink to={`/`}>
                             &larr; Back to Species List
                         </PageLink>
-                    </p>
+                    </Text>
 
-                    <h1>
+                    <Heading variant="heading1" as="h1">
                         {pageContext.parentSpecies}:{" "}
                         {data.contentfulBreed.breedName}
-                    </h1>
+                    </Heading>
                 </Container>
             </Section>
 
@@ -107,24 +113,26 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
             <Section>
                 <Container>
                     <FlexContainer>
-                        <TextColumn>
+                        <Column>
                             {renderRichText(
                                 data.contentfulBreed.breedDescription
                             )}
-                        </TextColumn>
-                        <Stats statData={statData} />
+                        </Column>
+                        <Column>
+                            <Stats statData={statData} />
+                        </Column>
                     </FlexContainer>
                 </Container>
             </Section>
 
-            <Section>
-                <Container>
-                    {data.contentfulBreed.animalsForAdoption && (
+            {data.contentfulBreed.animalsForAdoption && (
+                <Section variant="offWhite">
+                    <Container>
                         <div className="animals-for-adoption">
-                            <h2>
+                            <Heading variant="heading2" as="h2">
                                 Adopt a {data.contentfulBreed.breedName}{" "}
                                 {pageContext.parentSpecies} today!
-                            </h2>
+                            </Heading>
                             <FlexContainer>
                                 {data.contentfulBreed.animalsForAdoption.map(
                                     (animalData) => (
@@ -137,9 +145,9 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
                                 )}
                             </FlexContainer>
                         </div>
-                    )}
-                </Container>
-            </Section>
+                    </Container>
+                </Section>
+            )}
         </Layout>
     )
 }
@@ -172,12 +180,5 @@ export const query = graphql`
                 }
             }
         }
-    }
-`
-
-const TextColumn = styled.div`
-    flex: 1 0 100%;
-    @media screen and (min-width: 1200px) {
-        flex: 0 1 calc(50% - 1em);
     }
 `

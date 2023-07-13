@@ -5,11 +5,12 @@ export const designTokens = {
         brandLight: "#fff", // white
         brandDark: "#333", // dark gray
         brandEmphasis: "#EA6403", // orange
-        brandBorder: "#bbb", // medium gray
+        brandBorder: "#d7d7d7", // medium gray
     },
     spacing: {
         small: "20px",
-        large: "40px",
+        medium: "40px",
+        large: "60px",
     },
     borderRadius: {
         default: "6px",

@@ -2,17 +2,19 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
 
-// components
+// components & ui
 import Card from "../components/Card"
 import Layout from "../components/Layout"
-import PageLink from "../components/PageLink"
-// import Section from "../components/utilities/Section"
-
-// styles
-import styled from "styled-components"
-import { designTokens } from "../components/designTokens"
-
-import { Section, Container, FlexContainer } from "../components/ui"
+import {
+    Section,
+    Container,
+    FlexContainer,
+    Heading,
+    Text,
+    PageLink,
+    List,
+    ListItem,
+} from "../components/ui"
 
 interface ListPageProps {
     data: {
@@ -51,32 +53,33 @@ const ListPage = ({ data }: ListPageProps) => {
         <Layout>
             <Section>
                 <Container>
-                    <Intro>
+                    <Text variant="lead">
                         Welcome to PetSpace, your social network for pets. Here
                         you can learn about pet species, breeds and adoptable
                         pets.
-                    </Intro>
+                    </Text>
 
-                    <SpeciesList>
-                        <SpeciesListItem>Jump to: </SpeciesListItem>
+                    <List>
+                        <ListItem variant="inline">Jump to: </ListItem>
                         {data.allContentfulSpecies.nodes.map((speciesData) => (
-                            <SpeciesListItem key={speciesData.id}>
-                                <PageLink url={`/#${speciesData.slug}s`}>
+                            <ListItem variant="inline" key={speciesData.id}>
+                                <PageLink to={`/#${speciesData.slug}s`}>
                                     {speciesData.speciesType}s
                                 </PageLink>
-                            </SpeciesListItem>
+                            </ListItem>
                         ))}
-                    </SpeciesList>
+                    </List>
                 </Container>
             </Section>
 
             {data.allContentfulSpecies.nodes.map((speciesData) => (
                 <Section key={speciesData.slug}>
                     <Container>
-                        <h2 id={`${speciesData.slug}s`}>
-                            {speciesData.speciesType} Breeds:{" "}
-                        </h2>
-
+                        <Heading variant="heading2" as="h2">
+                            <span id={`${speciesData.slug}s`}>
+                                {speciesData.speciesType} Breeds:{" "}
+                            </span>
+                        </Heading>
                         <FlexContainer>
                             {speciesData.breeds?.map((breedData) => (
                                 <Card
@@ -116,18 +119,4 @@ export const query = graphql`
             }
         }
     }
-`
-
-const Intro = styled.p`
-    font-size: ${designTokens.fontSizes.medium};
-    font-weight: ${designTokens.fontWeights.normal};
-`
-const SpeciesList = styled.ul`
-    margin: 0;
-    padding: 0;
-`
-
-const SpeciesListItem = styled.li`
-    display: inline;
-    margin-right: 20px;
 `

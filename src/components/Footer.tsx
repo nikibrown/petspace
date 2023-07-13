@@ -64,7 +64,7 @@ const Footer = ({ siteTitle }: FooterProps) => {
     return (
         <FooterWrapper>
             <Container>
-                <FlexContainer variant="jcSpaceBetween">
+                <FlexContainer variant="spacebetween">
                     <p>&copy; {siteTitle} 2023</p>
                     <p>
                         <FooterEmoji>

@@ -8,14 +8,16 @@ import {
 } from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-// components
-import { ButtonCTA, Section, Container } from "../components/ui"
+// components & ui
+import {
+    ButtonCTA,
+    Section,
+    Container,
+    Heading,
+    PageLink,
+    Text,
+} from "../components/ui"
 import Layout from "../components/Layout"
-import PageLink from "../components/PageLink"
-
-// styles
-import styled from "styled-components"
-import { designTokens } from "../components/designTokens"
 
 interface SingleAnimalProps {
     data: {
@@ -56,29 +58,36 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
         <Layout>
             <Section>
                 <Container>
-                    <p>
+                    <Text>
                         <PageLink
-                            url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
+                            to={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
                         >
                             &larr; Back to {pageContext.parentBreed}{" "}
                             {pageContext.parentSpecies}s
                         </PageLink>
-                    </p>
+                    </Text>
 
-                    <h1>{data.contentfulAnimals.animalName}</h1>
-
+                    <Heading variant="heading1" as="h1">
+                        {data.contentfulAnimals.animalName}
+                    </Heading>
+                </Container>
+            </Section>
+            <Section>
+                <Container>
                     {data.contentfulAnimals.animalPhoto && (
-                        <ImageContainer>
-                            <GatsbyImage
-                                image={getImage(
-                                    data.contentfulAnimals.animalPhoto
-                                        .gatsbyImageData
-                                )}
-                                alt={data.contentfulAnimals.animalName}
-                            />
-                        </ImageContainer>
+                        <GatsbyImage
+                            image={getImage(
+                                data.contentfulAnimals.animalPhoto
+                                    .gatsbyImageData
+                            )}
+                            alt={data.contentfulAnimals.animalName}
+                        />
                     )}
+                </Container>
+            </Section>
 
+            <Section>
+                <Container>
                     <div className="desc">
                         {renderRichText(
                             data.contentfulAnimals.animalDescription
@@ -115,8 +124,4 @@ export const query = graphql`
             adoptionLink
         }
     }
-`
-
-const ImageContainer = styled.div`
-    margin-bottom: ${designTokens.spacing.small};
 `
