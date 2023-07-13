@@ -64,7 +64,7 @@ With scaling in mind I created three content types
 ---
 
 -   Set up `designTokens` for use with styled components to enable consistent and reusable brand colors, spacing, type sizes and typefaces
--   Set up reusable utility components for layout: `<Container>`, `<FlexRow>`, `<Section>` with variations for layouts etc.
+-   Set up reusable ui components for layout in `/src/components/ui.tsx`: `<Container>`, `<Flex>`, `<Section>` with variations for layouts etc.
 -   Moved reusable chunks of code to components for future scalability
 -   For content scalability, I used Gatsby `createPages` function to dynamically generate pages. The Gatsby File System Route API allows for dynamic slug naming for individual content would not work with the URL structure `/{species}/{breed}/{individual-animal}` I had in mind.
 

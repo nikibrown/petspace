@@ -2,15 +2,15 @@ export const designTokens = {
     colors: {
         brandWarning: "#ce4141", // red
         brandPrimary: "#2e89ff", // blue
-        brandPrimaryDarker: "#2774d9", // blue - 15% darker
         brandLight: "#fff", // white
         brandDark: "#333", // dark gray
         brandEmphasis: "#EA6403", // orange
-        brandBorder: "#bbb",
+        brandBorder: "#d7d7d7", // medium gray
     },
     spacing: {
         small: "20px",
-        large: "40px",
+        medium: "40px",
+        large: "60px",
     },
     borderRadius: {
         default: "6px",

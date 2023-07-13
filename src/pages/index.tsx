@@ -2,18 +2,21 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
 
-// components
+// components & ui
 import Card from "../components/Card"
-import { FlexRowStart } from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
-import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
+import {
+    Section,
+    Container,
+    FlexContainer,
+    Heading,
+    Text,
+    PageLink,
+    List,
+    ListItem,
+} from "../components/ui"
 
-// styles
-import styled from "styled-components"
-import { designTokens } from "../components/designTokens"
-
-interface LiistPageProps {
+interface ListPageProps {
     data: {
         allContentfulSpecies: {
             nodes: {
@@ -45,42 +48,48 @@ export const Head = () => (
     </>
 )
 
-const ListPage = ({ data }: LiistPageProps) => {
+const ListPage = ({ data }: ListPageProps) => {
     return (
         <Layout>
             <Section>
-                <Intro>
-                    Welcome to PetSpace, your social network for pets. Here you
-                    can learn about pet species, breeds and adoptable pets.
-                </Intro>
+                <Container>
+                    <Text variant="lead">
+                        Welcome to PetSpace, your social network for pets. Here
+                        you can learn about pet species, breeds and adoptable
+                        pets.
+                    </Text>
 
-                <SpeciesList>
-                    <SpeciesListItem>Jump to: </SpeciesListItem>
-                    {data.allContentfulSpecies.nodes.map((speciesData) => (
-                        <SpeciesListItem key={speciesData.id}>
-                            <PageLink url={`/#${speciesData.slug}s`}>
-                                {speciesData.speciesType}s
-                            </PageLink>
-                        </SpeciesListItem>
-                    ))}
-                </SpeciesList>
+                    <List>
+                        <ListItem variant="inline">Jump to: </ListItem>
+                        {data.allContentfulSpecies.nodes.map((speciesData) => (
+                            <ListItem variant="inline" key={speciesData.id}>
+                                <PageLink to={`/#${speciesData.slug}s`}>
+                                    {speciesData.speciesType}s
+                                </PageLink>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Container>
             </Section>
 
             {data.allContentfulSpecies.nodes.map((speciesData) => (
                 <Section key={speciesData.slug}>
-                    <h2 id={`${speciesData.slug}s`}>
-                        {speciesData.speciesType} Breeds:{" "}
-                    </h2>
-
-                    <FlexRowStart>
-                        {speciesData.breeds?.map((breedData) => (
-                            <Card
-                                cardData={breedData}
-                                url={`/${speciesData.slug}s/${breedData.slug}`}
-                                key={breedData.slug}
-                            />
-                        ))}
-                    </FlexRowStart>
+                    <Container>
+                        <Heading variant="heading2" as="h2">
+                            <span id={`${speciesData.slug}s`}>
+                                {speciesData.speciesType} Breeds:{" "}
+                            </span>
+                        </Heading>
+                        <FlexContainer>
+                            {speciesData.breeds?.map((breedData) => (
+                                <Card
+                                    cardData={breedData}
+                                    url={`/${speciesData.slug}s/${breedData.slug}`}
+                                    key={breedData.slug}
+                                />
+                            ))}
+                        </FlexContainer>
+                    </Container>
                 </Section>
             ))}
         </Layout>
@@ -110,18 +119,4 @@ export const query = graphql`
             }
         }
     }
-`
-
-const Intro = styled.p`
-    font-size: ${designTokens.fontSizes.medium};
-    font-weight: ${designTokens.fontWeights.normal};
-`
-const SpeciesList = styled.ul`
-    margin: 0;
-    padding: 0;
-`
-
-const SpeciesListItem = styled.li`
-    display: inline;
-    margin-right: 20px;
 `

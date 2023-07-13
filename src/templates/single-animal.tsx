@@ -8,15 +8,16 @@ import {
 } from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-// components
-import ButtonCTA from "../components/ButtonCTA"
+// components & ui
+import {
+    ButtonCTA,
+    Section,
+    Container,
+    Heading,
+    PageLink,
+    Text,
+} from "../components/ui"
 import Layout from "../components/Layout"
-import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
-
-// styles
-import styled from "styled-components"
-import { designTokens } from "../components/designTokens"
 
 interface SingleAnimalProps {
     data: {
@@ -56,19 +57,24 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
     return (
         <Layout>
             <Section>
-                <p>
-                    <PageLink
-                        url={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
-                    >
-                        &larr; Back to {pageContext.parentBreed}{" "}
-                        {pageContext.parentSpecies}s
-                    </PageLink>
-                </p>
+                <Container>
+                    <Text>
+                        <PageLink
+                            to={`/${pageContext.parentSpeciesSlug}s/${pageContext.parentBreedSlug}`}
+                        >
+                            &larr; Back to {pageContext.parentBreed}{" "}
+                            {pageContext.parentSpecies}s
+                        </PageLink>
+                    </Text>
 
-                <h1>{data.contentfulAnimals.animalName}</h1>
-
-                {data.contentfulAnimals.animalPhoto && (
-                    <ImageContainer>
+                    <Heading variant="heading1" as="h1">
+                        {data.contentfulAnimals.animalName}
+                    </Heading>
+                </Container>
+            </Section>
+            <Section>
+                <Container>
+                    {data.contentfulAnimals.animalPhoto && (
                         <GatsbyImage
                             image={getImage(
                                 data.contentfulAnimals.animalPhoto
@@ -76,18 +82,27 @@ const AnimalSinglePage = ({ data, pageContext }: SingleAnimalProps) => {
                             )}
                             alt={data.contentfulAnimals.animalName}
                         />
-                    </ImageContainer>
-                )}
+                    )}
+                </Container>
+            </Section>
 
-                <div className="desc">
-                    {renderRichText(data.contentfulAnimals.animalDescription)}
-                </div>
+            <Section>
+                <Container>
+                    <div className="desc">
+                        {renderRichText(
+                            data.contentfulAnimals.animalDescription
+                        )}
+                    </div>
 
-                {data.contentfulAnimals.adoptionLink && (
-                    <ButtonCTA url={data.contentfulAnimals.adoptionLink}>
-                        Adopt {data.contentfulAnimals.animalName} &rarr;
-                    </ButtonCTA>
-                )}
+                    {data.contentfulAnimals.adoptionLink && (
+                        <ButtonCTA
+                            variant="primary"
+                            to={data.contentfulAnimals.adoptionLink}
+                        >
+                            Adopt {data.contentfulAnimals.animalName} &rarr;
+                        </ButtonCTA>
+                    )}
+                </Container>
             </Section>
         </Layout>
     )
@@ -109,8 +124,4 @@ export const query = graphql`
             adoptionLink
         }
     }
-`
-
-const ImageContainer = styled.div`
-    margin-bottom: ${designTokens.spacing.small};
 `

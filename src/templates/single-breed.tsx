@@ -1,7 +1,6 @@
 import * as React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image"
-
 import {
     renderRichText,
     RenderRichTextData,
@@ -9,13 +8,19 @@ import {
 } from "gatsby-source-contentful/rich-text"
 import { graphql } from "gatsby"
 
-// components
+// components & ui
 import Card from "../components/Card"
-import FlexRow from "../components/utilities/FlexRow"
 import Layout from "../components/Layout"
-import PageLink from "../components/PageLink"
-import Section from "../components/utilities/Section"
 import Stats from "../components/Stats"
+import {
+    Section,
+    Container,
+    FlexContainer,
+    Heading,
+    PageLink,
+    Text,
+    Column,
+} from "../components/ui"
 
 // styles
 import styled from "styled-components"
@@ -78,57 +83,71 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
     return (
         <Layout>
             <Section>
-                <p>
-                    <PageLink url={`/`}>&larr; Back to Species List</PageLink>
-                </p>
+                <Container>
+                    <Text>
+                        <PageLink to={`/`}>
+                            &larr; Back to Species List
+                        </PageLink>
+                    </Text>
 
-                <h1>
-                    {pageContext.parentSpecies}:{" "}
-                    {data.contentfulBreed.breedName}
-                </h1>
+                    <Heading variant="heading1" as="h1">
+                        {pageContext.parentSpecies}:{" "}
+                        {data.contentfulBreed.breedName}
+                    </Heading>
+                </Container>
             </Section>
 
             <Section>
-                {data.contentfulBreed.breedPhoto && (
-                    <GatsbyImage
-                        image={getImage(
-                            data.contentfulBreed.breedPhoto.gatsbyImageData
-                        )}
-                        alt={data.contentfulBreed.breedName}
-                    />
-                )}
-            </Section>
-
-            <Section>
-                <FlexRow>
-                    <TextColumn>
-                        {renderRichText(data.contentfulBreed.breedDescription)}
-                    </TextColumn>
-                    <Stats statData={statData} />
-                </FlexRow>
-            </Section>
-
-            <Section>
-                {data.contentfulBreed.animalsForAdoption && (
-                    <div className="animals-for-adoption">
-                        <h2>
-                            Adopt a {data.contentfulBreed.breedName}{" "}
-                            {pageContext.parentSpecies} today!
-                        </h2>
-                        <FlexRow>
-                            {data.contentfulBreed.animalsForAdoption.map(
-                                (animalData) => (
-                                    <Card
-                                        cardData={animalData}
-                                        url={`/${pageContext.parentSlug}s/${data.contentfulBreed.slug}/${animalData.slug}`}
-                                        key={animalData.slug}
-                                    />
-                                )
+                <Container>
+                    {data.contentfulBreed.breedPhoto && (
+                        <GatsbyImage
+                            image={getImage(
+                                data.contentfulBreed.breedPhoto.gatsbyImageData
                             )}
-                        </FlexRow>
-                    </div>
-                )}
+                            alt={data.contentfulBreed.breedName}
+                        />
+                    )}
+                </Container>
             </Section>
+
+            <Section>
+                <Container>
+                    <FlexContainer>
+                        <Column>
+                            {renderRichText(
+                                data.contentfulBreed.breedDescription
+                            )}
+                        </Column>
+                        <Column>
+                            <Stats statData={statData} />
+                        </Column>
+                    </FlexContainer>
+                </Container>
+            </Section>
+
+            {data.contentfulBreed.animalsForAdoption && (
+                <Section variant="offWhite">
+                    <Container>
+                        <div className="animals-for-adoption">
+                            <Heading variant="heading2" as="h2">
+                                Adopt a {data.contentfulBreed.breedName}{" "}
+                                {pageContext.parentSpecies} today!
+                            </Heading>
+                            <FlexContainer>
+                                {data.contentfulBreed.animalsForAdoption.map(
+                                    (animalData) => (
+                                        <Card
+                                            cardData={animalData}
+                                            url={`/${pageContext.parentSlug}s/${data.contentfulBreed.slug}/${animalData.slug}`}
+                                            key={animalData.slug}
+                                        />
+                                    )
+                                )}
+                            </FlexContainer>
+                        </div>
+                    </Container>
+                </Section>
+            )}
         </Layout>
     )
 }
@@ -161,12 +180,5 @@ export const query = graphql`
                 }
             }
         }
-    }
-`
-
-const TextColumn = styled.div`
-    flex: 1 0 100%;
-    @media screen and (min-width: 1200px) {
-        flex: 0 1 calc(50% - 1em);
     }
 `

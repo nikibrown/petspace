@@ -1,10 +1,11 @@
 import * as React from "react"
-import ButtonCTA from "./ButtonCTA"
+import { ButtonCTA, Heading } from "./ui"
 import { designTokens } from "./designTokens"
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image"
 import { Link as CardLink } from "gatsby"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import styled from "styled-components"
+import { PageLink } from "./ui"
 
 interface CardProps {
     cardData: {
@@ -19,7 +20,8 @@ interface CardProps {
 }
 
 const CardWrapper = styled.div`
-    border: 1px solid #bbb;
+    background-color: ${designTokens.colors.brandLight};
+    border: 1px solid ${designTokens.colors.brandBorder};
     border-radius: 6px;
     flex: 1 0 80vw;
     padding: ${designTokens.spacing.small};
@@ -37,11 +39,7 @@ const CardWrapper = styled.div`
     }
 `
 
-const CardLinkHeadline = styled(CardLink)`
-    color: ${designTokens.colors.brandPrimary};
-    text-decoration: none;
-`
-const CardImage = styled.div`
+const CardImageContainer = styled.div`
     margin-bottom: ${designTokens.spacing.small};
 `
 
@@ -59,7 +57,7 @@ const Card = ({ cardData, url }: CardProps) => {
 
     return (
         <CardWrapper>
-            <CardImage>
+            <CardImageContainer>
                 <CardLink to={url}>
                     {cardImage && (
                         <GatsbyImage
@@ -68,14 +66,16 @@ const Card = ({ cardData, url }: CardProps) => {
                         />
                     )}
                 </CardLink>
-            </CardImage>
+            </CardImageContainer>
             <CardBody>
-                <h3>
-                    <CardLinkHeadline to={url}>{cardTitle}</CardLinkHeadline>
-                </h3>
+                <Heading variant="heading3" as="h3">
+                    <PageLink to={url}>{cardTitle}</PageLink>
+                </Heading>
                 {cardText && renderRichText(cardText)}
 
-                <ButtonCTA url={url}>Learn More &rarr;</ButtonCTA>
+                <ButtonCTA variant="primary" to={url}>
+                    Learn More &rarr;
+                </ButtonCTA>
             </CardBody>
         </CardWrapper>
     )

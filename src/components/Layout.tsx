@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 const Main = styled.main`
-    padding: ${designTokens.spacing.small} 0;
+    padding: ${designTokens.spacing.small} 0 0 0;
 `
 
 const Layout = ({ children }: LayoutProps) => {
