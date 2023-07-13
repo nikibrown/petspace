@@ -1,8 +1,10 @@
 import * as React from "react"
-import { designTokens } from "./designTokens"
-import Footer from "./Footer"
-import { GlobalStyles } from "../globalStyles"
 import { graphql, useStaticQuery } from "gatsby"
+
+// components & ui
+import { designTokens } from "./designTokens"
+import { GlobalStyles } from "../globalStyles"
+import Footer from "./Footer"
 import Header from "./Header"
 import styled from "styled-components"
 

@@ -1,20 +1,24 @@
 import * as React from "react"
-import { ButtonCTA, Heading } from "./ui"
-import { designTokens } from "./designTokens"
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image"
-import { Link as CardLink } from "gatsby"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import {
+    renderRichText,
+    RenderRichTextData,
+    ContentfulRichTextGatsbyReference,
+} from "gatsby-source-contentful/rich-text"
+
+// components & ui
+import { designTokens } from "./designTokens"
 import styled from "styled-components"
-import { PageLink } from "./ui"
+import { ButtonCTA, Heading, PageLink } from "./ui"
 
 interface CardProps {
     cardData: {
-        breedPhoto?: ImageDataLike
-        animalPhoto?: ImageDataLike
+        breedPhoto?: ImageDataLike | undefined
+        animalPhoto?: ImageDataLike | undefined
         breedName: string
         animalName: string
-        breedSummary: string
-        animalDescription: string
+        breedSummary: RenderRichTextData<ContentfulRichTextGatsbyReference>
+        animalDescription: RenderRichTextData<ContentfulRichTextGatsbyReference>
     }
     url: string
 }
@@ -58,14 +62,14 @@ const Card = ({ cardData, url }: CardProps) => {
     return (
         <CardWrapper>
             <CardImageContainer>
-                <CardLink to={url}>
+                <PageLink to={url}>
                     {cardImage && (
                         <GatsbyImage
                             image={getImage(cardImage)}
                             alt={cardTitle}
                         />
                     )}
-                </CardLink>
+                </PageLink>
             </CardImageContainer>
             <CardBody>
                 <Heading variant="heading3" as="h3">
