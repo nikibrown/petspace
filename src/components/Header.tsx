@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Container, Flex } from "./ui"
+import { Container, FlexContainer } from "./ui"
 import { designTokens } from "./designTokens"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
@@ -58,7 +58,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
     return (
         <HeaderWrapper>
             <Container>
-                <Flex variant="justifySpaceBetween">
+                <FlexContainer variant="jcSpaceBetween">
                     <Logo>
                         <Link to="/">{siteTitle}</Link>
                     </Logo>
@@ -70,7 +70,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
                             </Badge>
                         ) : null}
                     </Avatar>
-                </Flex>
+                </FlexContainer>
             </Container>
         </HeaderWrapper>
     )

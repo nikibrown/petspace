@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Container, Flex } from "./ui"
+import { Container, FlexContainer } from "./ui"
 import { designTokens } from "./designTokens"
 import styled from "styled-components"
 
@@ -64,7 +64,7 @@ const Footer = ({ siteTitle }: FooterProps) => {
     return (
         <FooterWrapper>
             <Container>
-                <Flex variant="justifySpaceBetween">
+                <FlexContainer variant="jcSpaceBetween">
                     <p>&copy; {siteTitle} 2023</p>
                     <p>
                         <FooterEmoji>
@@ -80,7 +80,7 @@ const Footer = ({ siteTitle }: FooterProps) => {
                             🐦<ToolTip className="tooltip">chirp</ToolTip>
                         </FooterEmoji>
                     </p>
-                </Flex>
+                </FlexContainer>
             </Container>
         </FooterWrapper>
     )

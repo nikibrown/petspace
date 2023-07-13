@@ -12,7 +12,7 @@ import PageLink from "../components/PageLink"
 import styled from "styled-components"
 import { designTokens } from "../components/designTokens"
 
-import { Section, Container, Flex } from "../components/ui"
+import { Section, Container, FlexContainer } from "../components/ui"
 
 interface ListPageProps {
     data: {
@@ -77,7 +77,7 @@ const ListPage = ({ data }: ListPageProps) => {
                             {speciesData.speciesType} Breeds:{" "}
                         </h2>
 
-                        <Flex variant="justifyFlexStart">
+                        <FlexContainer>
                             {speciesData.breeds?.map((breedData) => (
                                 <Card
                                     cardData={breedData}
@@ -85,7 +85,7 @@ const ListPage = ({ data }: ListPageProps) => {
                                     key={breedData.slug}
                                 />
                             ))}
-                        </Flex>
+                        </FlexContainer>
                     </Container>
                 </Section>
             ))}

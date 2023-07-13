@@ -13,7 +13,7 @@ import { graphql } from "gatsby"
 import Card from "../components/Card"
 import Layout from "../components/Layout"
 import PageLink from "../components/PageLink"
-import { Section, Container, Flex } from "../components/ui"
+import { Section, Container, FlexContainer } from "../components/ui"
 import Stats from "../components/Stats"
 
 // styles
@@ -106,14 +106,14 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
 
             <Section>
                 <Container>
-                    <Flex>
+                    <FlexContainer>
                         <TextColumn>
                             {renderRichText(
                                 data.contentfulBreed.breedDescription
                             )}
                         </TextColumn>
                         <Stats statData={statData} />
-                    </Flex>
+                    </FlexContainer>
                 </Container>
             </Section>
 
@@ -125,7 +125,7 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
                                 Adopt a {data.contentfulBreed.breedName}{" "}
                                 {pageContext.parentSpecies} today!
                             </h2>
-                            <Flex>
+                            <FlexContainer>
                                 {data.contentfulBreed.animalsForAdoption.map(
                                     (animalData) => (
                                         <Card
@@ -135,7 +135,7 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
                                         />
                                     )
                                 )}
-                            </Flex>
+                            </FlexContainer>
                         </div>
                     )}
                 </Container>

@@ -2,7 +2,14 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { darken } from "polished"
 import styled from "styled-components"
-import { variant } from "styled-system"
+import {
+    compose,
+    variant,
+    flexbox,
+    FlexProps,
+    color,
+    ColorProps,
+} from "styled-system"
 import { designTokens } from "./designTokens"
 
 /**
@@ -126,32 +133,33 @@ export const Section = ({ children, variant }: SectionProps) => {
 }
 
 /**
- * Flex
+ * FlexContainer
  */
 
-interface FlexProps {
+interface FlexContainerProps {
     children: React.ReactNode
-    variant?: "justifySpaceBetween" | "justifyFlexStart"
+    variant?: "jcSpaceBetween"
 }
 
-const FlexWrapper = styled.div<FlexProps>`
+const FlexWrapper = styled.section<FlexContainerProps>`
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
     gap: 20px;
-
     ${variant({
         variants: {
-            justifySpaceBetween: {
+            jcSpaceBetween: {
                 justifyContent: "space-between",
-            },
-            justifyFlexStart: {
-                justifyContent: "flex-start",
             },
         },
     })}
 `
 
-export const Flex = ({ children, variant }: FlexProps) => {
+export const FlexContainer = ({ children, variant }: FlexContainerProps) => {
     return <FlexWrapper variant={variant}>{children}</FlexWrapper>
 }
+
+// export function Box({ children, ...props }) {
+//     return <BoxWrapper {...props}>{children}</BoxWrapper>
+// }
