@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Link as CardLink } from "gatsby"
 import {
     renderRichText,
     RenderRichTextData,
@@ -109,7 +108,7 @@ const Card = ({ cardData, url }: CardProps) => {
         >
             <CardWrapperInner variant={cardData.featured}>
                 <CardImageContainer>
-                    <CardLink to={url}>
+                    <PageLink to={url}>
                         {cardImage && (
                             <img
                                 srcSet={
@@ -127,7 +126,7 @@ const Card = ({ cardData, url }: CardProps) => {
                                 alt={cardTitle}
                             />
                         )}
-                    </CardLink>
+                    </PageLink>
                 </CardImageContainer>
                 <CardBody>
                     <Heading variant="heading3" as="h3">
