@@ -22,9 +22,6 @@ import {
     Column,
 } from "../components/ui"
 
-// styles
-import styled from "styled-components"
-
 interface SingleBreedProps {
     data: {
         contentfulBreed: {

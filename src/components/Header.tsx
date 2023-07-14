@@ -1,12 +1,11 @@
 import * as React from "react"
-import { Container, FlexContainer } from "./ui"
-import { designTokens } from "./designTokens"
-import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import styled from "styled-components"
 import { useState } from "react"
 
-import { PageLink } from "./ui"
+// components & ui
+import { PageLink, Container, FlexContainer } from "./ui"
+import { designTokens } from "./designTokens"
+import styled from "styled-components"
 
 const HeaderWrapper = styled.header`
     background-color: ${designTokens.colors.brandPrimary};
