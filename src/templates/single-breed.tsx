@@ -172,6 +172,7 @@ export const query = graphql`
                 raw
             }
             animalsForAdoption {
+                featured
                 id
                 animalName
                 slug

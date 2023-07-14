@@ -80,7 +80,8 @@ const ListPage = ({ data }: ListPageProps) => {
                                 {speciesData.speciesType} Breeds:{" "}
                             </span>
                         </Heading>
-                        <FlexContainer>
+
+                        <FlexContainer variant="spacebetween">
                             {speciesData.breeds?.map((breedData) => (
                                 <Card
                                     cardData={breedData}
@@ -100,12 +101,13 @@ export default ListPage
 
 export const query = graphql`
     query {
-        allContentfulSpecies(sort: { speciesType: ASC }) {
+        allContentfulSpecies(sort: { speciesType: DESC }) {
             nodes {
                 speciesType
                 slug
                 id
                 breeds {
+                    featured
                     slug
                     breedName
                     breedSummary {
