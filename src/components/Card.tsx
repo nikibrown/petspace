@@ -68,8 +68,6 @@ const CardWrapperInner = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    // this sets the layout of the card - default is column but can be set in CMS
-
     .featured & {
         flex-direction: row;
     }
