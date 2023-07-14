@@ -19,10 +19,10 @@ interface CardProps {
         animalName: string
         breedSummary: RenderRichTextData<ContentfulRichTextGatsbyReference>
         animalDescription: RenderRichTextData<ContentfulRichTextGatsbyReference>
-        featured?: string
     }
 
     url: string
+    featured?: "Featured" | "Standard"
 }
 
 interface FeaturedCardProps {
@@ -90,17 +90,14 @@ const CardBody = styled.div`
     flex-direction: column;
 `
 
-const Card = ({ cardData, url }: CardProps) => {
+const Card = ({ cardData, url, featured }: CardProps) => {
     const cardImage = cardData.breedPhoto || cardData.animalPhoto
     const cardTitle = cardData.breedName || cardData.animalName
     const cardText = cardData.breedSummary || cardData.animalDescription
 
     // pass featured to CardWrapper & CardWrapperInner as a variant
     return (
-        <CardWrapper
-            variant={cardData.featured}
-            className={cardData.featured?.toLowerCase()}
-        >
+        <CardWrapper variant={featured} className={featured?.toLowerCase()}>
             <CardWrapperInner>
                 <CardImageContainer>
                     <PageLink to={url}>

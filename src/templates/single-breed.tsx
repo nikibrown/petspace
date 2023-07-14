@@ -43,6 +43,8 @@ interface SingleBreedProps {
                 id: string
                 slug: string
                 animalName: string
+                featuredAnimal?: "Featured" | "Standard"
+
                 animalPhoto: {
                     gatsbyImageData: IGatsbyImageData
                 }
@@ -137,6 +139,7 @@ const BreedSinglePage = ({ data, pageContext }: SingleBreedProps) => {
                                             cardData={animalData}
                                             url={`/${pageContext.parentSlug}s/${data.contentfulBreed.slug}/${animalData.slug}`}
                                             key={animalData.slug}
+                                            featured={animalData.featuredAnimal}
                                         />
                                     )
                                 )}
@@ -169,7 +172,7 @@ export const query = graphql`
                 raw
             }
             animalsForAdoption {
-                featured
+                featuredAnimal
                 id
                 animalName
                 slug
