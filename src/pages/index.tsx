@@ -32,6 +32,7 @@ interface ListPageProps {
                     breedPhoto: {
                         gatsbyImageData: IGatsbyImageData
                     }
+                    featuredBreed?: "Featured" | "Standard"
                 }[]
             }[]
         }
@@ -87,6 +88,7 @@ const ListPage = ({ data }: ListPageProps) => {
                                     cardData={breedData}
                                     url={`/${speciesData.slug}s/${breedData.slug}`}
                                     key={breedData.slug}
+                                    featured={breedData.featuredBreed}
                                 />
                             ))}
                         </FlexContainer>
@@ -107,7 +109,7 @@ export const query = graphql`
                 slug
                 id
                 breeds {
-                    featured
+                    featuredBreed
                     slug
                     breedName
                     breedSummary {
