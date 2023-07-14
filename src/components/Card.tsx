@@ -64,18 +64,13 @@ const CardWrapper = styled.div<FeaturedCardProps>`
     })}
 `
 
-const CardWrapperInner = styled.div<FeaturedCardProps>`
+const CardWrapperInner = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    // this sets the layout of the card - default is column but can be set in CMS
-    ${variant({
-        variants: {
-            Featured: {
-                flexDirection: "row",
-            },
-        },
-    })}
+    .featured & {
+        flex-direction: row;
+    }
 `
 
 const CardImageContainer = styled.div`
@@ -106,7 +101,7 @@ const Card = ({ cardData, url }: CardProps) => {
             variant={cardData.featured}
             className={cardData.featured?.toLowerCase()}
         >
-            <CardWrapperInner variant={cardData.featured}>
+            <CardWrapperInner>
                 <CardImageContainer>
                     <PageLink to={url}>
                         {cardImage && (
